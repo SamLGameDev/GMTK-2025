@@ -11,26 +11,50 @@ public class GridTile : MonoBehaviour
 
     [SerializeField]
     Color HighlightedColor;
+
+    [SerializeField]
+    FurnitureStore selectedTiles;
+
+    [SerializeField]
+    Sprite EmptyTile;
+
+    public Furniture Furniture;
+
+    delegate void OnClicked();
+
+    public GameGrid gamegrid;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        EmptyTile = GetComponent<SpriteRenderer>().sprite;
+        if (Furniture != null) 
+        {
+            Furniture.furniture.transform.position = transform.position;
+        }
     }
 
     private void OnMouseEnter()
     {
+        if (selectedTiles.GetObject() != null) 
+        {
+            selectedTiles.GetObject().furniture.transform.position = transform.position;
+        }
+
         GetComponent<SpriteRenderer>().color = HighlightedColor; 
     }
 
     private void OnMouseExit()
     {
-        GetComponent<SpriteRenderer>().color = NormalColor;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.color = NormalColor;
+
+        spriteRenderer.sprite = EmptyTile;
+
     }
 
-    private void OnMouseDown()
-    {
-        
-    }
 
     public void SetNormalColor(Color color) 
     {
