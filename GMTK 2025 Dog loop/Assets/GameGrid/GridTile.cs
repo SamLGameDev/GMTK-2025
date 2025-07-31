@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-    
+
+    [ReadOnly(true), SerializeField]
     private Color NormalColor;
 
     [SerializeField]
@@ -23,6 +25,11 @@ public class GridTile : MonoBehaviour
     private void OnMouseExit()
     {
         GetComponent<SpriteRenderer>().color = NormalColor;
+    }
+
+    private void OnMouseDown()
+    {
+        
     }
 
     public void SetNormalColor(Color color) 
