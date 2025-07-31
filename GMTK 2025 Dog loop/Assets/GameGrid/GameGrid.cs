@@ -18,6 +18,14 @@ public class GameGrid : MonoBehaviour
     [SerializeField]
     private Camera cam;
 
+
+    [SerializeField]
+    private Color NormalOddColor;
+
+
+    [SerializeField]
+    private Color NormalEvenColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +41,18 @@ public class GameGrid : MonoBehaviour
                 GridTile tileInstance = Instantiate(tile, new Vector3(x, y), Quaternion.identity);
                 tileInstance.name = $"Tile {x} {y}";
 
+                SpriteRenderer renderer = tileInstance.GetComponent<SpriteRenderer>();
+
                 if ((x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0)) 
                 {
-                    tileInstance.GetComponent<SpriteRenderer>().color = Color.white;
+                    renderer.color = NormalEvenColor;
                 }
+                else 
+                {
+                    renderer.color = NormalOddColor;
+                }
+
+                tileInstance.SetNormalColor(renderer.color);
             }
         }
 
