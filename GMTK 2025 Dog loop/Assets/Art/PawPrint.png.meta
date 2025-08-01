@@ -1,10 +1,34 @@
 fileFormatVersion: 2
-guid: 857785390b586094fa0d622576f3759a
+guid: e18fb2e8c37d55f428ba8ffcea9e56d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3218248262026354849
-    second: Walls_0
+      213: 318196255192651221
+    second: PawPrint_0
+  - first:
+      213: -8211945292075609769
+    second: PawPrint_1
+  - first:
+      213: -2818491648762337410
+    second: PawPrint_2
+  - first:
+      213: 3930394828567668138
+    second: PawPrint_3
+  - first:
+      213: -794822447470757534
+    second: PawPrint_4
+  - first:
+      213: 8853046843333521964
+    second: PawPrint_5
+  - first:
+      213: -1768262777235938850
+    second: PawPrint_6
+  - first:
+      213: -7019444499153600750
+    second: PawPrint_7
+  - first:
+      213: -3445815759168167730
+    second: PawPrint_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 192
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,7 +137,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walls_0
+      name: PawPrint_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5f96e6b14c7653d0800000000000000
-      internalID: -3218248262026354849
+      spriteID: 5d51e97eec57a6400800000000000000
+      internalID: 318196255192651221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walls_1
+      name: PawPrint_1
       rect:
         serializedVersion: 2
         x: 192
@@ -146,16 +170,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 14f64507b8411fc4aaf3788d44cca1f7
-      internalID: 286666640
+      spriteID: 75154eef34f490e80800000000000000
+      internalID: -8211945292075609769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walls_2
+      name: PawPrint_2
       rect:
         serializedVersion: 2
         x: 0
@@ -167,31 +191,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 044d55d9ad6b57d46ac294e87f68023d
-      internalID: 1777297427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walls_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 192
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9be47bf30545b440a6af7fc9d063862
-      internalID: 45637812
+      spriteID: e77ad1947c4b2e8d0800000000000000
+      internalID: -2818491648762337410
       vertices: []
       indices: 
       edges: []
@@ -199,7 +202,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cd490266cb24b494dbd767ba49946808
+    spriteID: f76bade22a1cae04ab97b3bc60125053
     internalID: 0
     vertices: []
     indices: 
@@ -207,10 +210,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walls_0: -3218248262026354849
-      Walls_1: 286666640
-      Walls_2: 1777297427
-      Walls_3: 45637812
+      PawPrint_0: 318196255192651221
+      PawPrint_1: -8211945292075609769
+      PawPrint_2: -2818491648762337410
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
