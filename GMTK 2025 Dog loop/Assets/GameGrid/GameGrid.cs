@@ -69,6 +69,11 @@ public class GameGrid : MonoBehaviour
                 for (int y = 0; y < gridSize.y; y++)
                 {
                     GridTile tile = GetTile(x, y);
+
+                    if (tile == null) 
+                    {
+                        continue;
+                    }
                     DestroyImmediate(tile.gameObject);
                     UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
                 }
@@ -143,6 +148,8 @@ public class GameGrid : MonoBehaviour
 
         tile.furniture.gameObject.layer = 2;
         clicked = DropObject;
+
+        print("Select");
     }
 
 
@@ -154,7 +161,7 @@ public class GameGrid : MonoBehaviour
             return;
         }
 
-        print("why");
+        print("Drop");
 
 
         selectedObject.GetObject().furniture.layer = 0;
@@ -165,7 +172,43 @@ public class GameGrid : MonoBehaviour
 
     }
 
+    public void Interact()
+    {
+        if (selectedObject.GetObject() != null)
+        {
+            clicked.Invoke(selectedObject.GetObject());
+            return;
+        }
 
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = -cam.transform.position.z;
+        Vector3 Pos = cam.ScreenToWorldPoint(mousePos);
+        Pos.z = 1;
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(Pos, 0.2f, Vector2.zero, 0, 7);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit)
+            {
+
+                if (!hit.rigidbody)
+                {
+
+
+                    print(hit.collider.gameObject.name);
+                    return;
+                }
+
+                GameObject furn = hit.rigidbody.gameObject;
+
+
+                print("hit");
+
+                RegisterFurniture store = furn.GetComponent<RegisterFurniture>();
+
+                clicked.Invoke(store.furniture);
+            }
+        }
+    }
 
     private void OnDestroy()
     {
@@ -174,38 +217,6 @@ public class GameGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetMouseButtonDown(0) &&  TimeSinceLastClick + 0.5f < Time.time)
-        {
-            if (selectedObject.GetObject() != null)
-            {
-                clicked.Invoke(selectedObject.GetObject());
-                return;
-            }
-
-            TimeSinceLastClick = Time.time;
-            Vector3 Pos = cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(Pos, new Vector2(0, 0));
-
-            if (hit)
-            {
-
-                if (!hit.rigidbody)
-                {
-                    return;
-                }
-
-                GameObject furn = hit.rigidbody.gameObject;
-
-
-
-                RegisterFurniture store = furn.GetComponent<RegisterFurniture>();
-
-                clicked.Invoke(store.furniture);
-            }
-
-        }
-        
     }
 }
 
