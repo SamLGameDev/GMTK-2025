@@ -1468,6 +1468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furniture: {fileID: 11400000, guid: d008b2aaab91c1b42bf39285dfe92b88, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
+  DestroyedSprite: {fileID: 0}
   Right: 0
   Left: 0
   Down: 0
@@ -4042,6 +4043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furniture: {fileID: 11400000, guid: b92451b201828294da3292ba9bed8a08, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
+  DestroyedSprite: {fileID: 0}
   Right: 0
   Left: 0
   Down: 0
@@ -9482,7 +9484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1224711670
 Animator:
   serializedVersion: 7
@@ -12658,6 +12660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furniture: {fileID: 11400000, guid: 4d7b3b4ef7863ea41bb1b87ae7f7e797, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
+  DestroyedSprite: {fileID: 0}
   Right: 0
   Left: 0
   Down: 0
@@ -12838,6 +12841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furniture: {fileID: 11400000, guid: 00ed30c91a5b4c547804f58f6384f53c, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
+  DestroyedSprite: {fileID: 0}
   Right: 0
   Left: 0
   Down: 0
@@ -13014,6 +13018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furniture: {fileID: 11400000, guid: d752dd55e71deee4788d4ef43b69ae21, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
+  DestroyedSprite: {fileID: 0}
   Right: 0
   Left: 0
   Down: 0
@@ -14044,6 +14049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   furniture: {fileID: 11400000, guid: a12b6d9a5abb2a14a9915366558ed916, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
+  DestroyedSprite: {fileID: 0}
   Right: 0
   Left: 0
   Down: 0

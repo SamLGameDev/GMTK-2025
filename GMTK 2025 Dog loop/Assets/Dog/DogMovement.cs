@@ -89,9 +89,9 @@ public class DogMovement : MonoBehaviour
     {
         if (collision.tag == "Untagged") 
         {
-            collision.GetComponent<SpriteRenderer>().sprite = Destroyedsprite;
-
             RegisterFurniture furn = collision.GetComponent<RegisterFurniture>();
+
+            furn.SetDestroyed();
 
             Destroy(furn);
 

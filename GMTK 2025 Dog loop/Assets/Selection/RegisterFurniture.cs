@@ -11,6 +11,9 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     GameObjectStore store;
 
+    [SerializeField]
+    Sprite DestroyedSprite;
+
     public bool Right;
 
     public bool Left;
@@ -23,6 +26,11 @@ public class RegisterFurniture : MonoBehaviour
     {
         furniture.furniture = gameObject;
         GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void SetDestroyed() 
+    {
+        GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
     }
 
     private void Start()
