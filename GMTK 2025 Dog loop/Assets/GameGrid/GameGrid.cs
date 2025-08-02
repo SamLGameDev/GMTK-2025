@@ -12,8 +12,7 @@ using Unity.VisualScripting;
 public class GameGrid : MonoBehaviour
 {
 
-    [SerializeField]
-    private Vector2 gridSize;
+    public Vector2 gridSize;
 
     [SerializeField]
     private float cellSize;
@@ -36,8 +35,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField]
     private List<PosTilePair> grid;
 
-    [SerializeField]
-    private GameObjectStore selectedObject;
+    public GameObjectStore selectedObject;
 
     public delegate void OnClicked(GameObject tile);
 
@@ -170,11 +168,6 @@ public class GameGrid : MonoBehaviour
 
         clicked = SetSelected;
 
-        selectedObject.Left = false;
-        selectedObject.Right = false;
-        selectedObject.Up = false;
-        selectedObject.Down = false;
-
     }
 
     public void Interact()
@@ -201,7 +194,7 @@ public class GameGrid : MonoBehaviour
             if (hit)
             {
 
-                if (!hit.rigidbody)
+                if (!hit.rigidbody || !hit.rigidbody.GetComponent<RegisterFurniture>())
                 {
 
 

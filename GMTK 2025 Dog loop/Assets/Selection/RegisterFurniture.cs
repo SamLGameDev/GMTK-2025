@@ -11,35 +11,50 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     GameObjectStore store;
 
+    public bool Right;
+
+    public bool Left;
+
+    public bool Down;
+
+    public bool Up;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
+        GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    private void Start()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (store.GetObject() != gameObject) 
-        {
-            return;
-        }
+
 
         if (collision.gameObject.tag == "RightWall") 
         {
-            store.Right = true;
+            Right = true;
         }
         if (collision.gameObject.tag == "LeftWall")
         {
-            store.Left = true;
+            Left = true;
         }
         if (collision.gameObject.tag == "UpWall")
         {
-            store.Up = true;
+            Up = true;
         }
         if (collision.gameObject.tag == "DownWall")
         {
-            store.Down = true;
+            Down = true;
         }
 
+        if (store.GetObject() != gameObject)
+        {
+            return;
+        }
 
         if (collision.tag == "Untagged")
         {
@@ -54,26 +69,28 @@ public class RegisterFurniture : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (store.GetObject() != gameObject)
-        {
-            return;
-        }
+
 
         if (collision.gameObject.tag == "RightWall")
         {
-            store.Right = false;
+            Right = false;
         }
         if (collision.gameObject.tag == "LeftWall")
         {
-            store.Left = false;
+            Left = false;
         }
         if (collision.gameObject.tag == "UpWall")
         {
-            store.Up = false;
+            Up = false;
         }
         if (collision.gameObject.tag == "DownWall")
         {
-            store.Down = false;
+            Down = false;
+        }
+
+        if (store.GetObject() != gameObject)
+        {
+            return;
         }
 
         if (collision.tag == "Untagged") 
