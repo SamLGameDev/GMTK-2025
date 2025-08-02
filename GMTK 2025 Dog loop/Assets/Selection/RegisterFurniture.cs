@@ -11,50 +11,35 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     GameObjectStore store;
 
-    public bool Right;
-
-    public bool Left;
-
-    public bool Down;
-
-    public bool Up;
-
     private void Awake()
     {
         furniture.furniture = gameObject;
-        GetComponent<BoxCollider2D>().enabled = false;
-    }
-
-    private void Start()
-    {
-        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
-        if (collision.gameObject.tag == "RightWall") 
-        {
-            Right = true;
-        }
-        if (collision.gameObject.tag == "LeftWall")
-        {
-            Left = true;
-        }
-        if (collision.gameObject.tag == "UpWall")
-        {
-            Up = true;
-        }
-        if (collision.gameObject.tag == "DownWall")
-        {
-            Down = true;
-        }
-
-        if (store.GetObject() != gameObject)
+        if (store.GetObject() != gameObject) 
         {
             return;
         }
+
+        if (collision.gameObject.tag == "RightWall") 
+        {
+            store.Right = true;
+        }
+        if (collision.gameObject.tag == "LeftWall")
+        {
+            store.Left = true;
+        }
+        if (collision.gameObject.tag == "UpWall")
+        {
+            store.Up = true;
+        }
+        if (collision.gameObject.tag == "DownWall")
+        {
+            store.Down = true;
+        }
+
 
         if (collision.tag == "Untagged")
         {
@@ -69,28 +54,26 @@ public class RegisterFurniture : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
-
-        if (collision.gameObject.tag == "RightWall")
-        {
-            Right = false;
-        }
-        if (collision.gameObject.tag == "LeftWall")
-        {
-            Left = false;
-        }
-        if (collision.gameObject.tag == "UpWall")
-        {
-            Up = false;
-        }
-        if (collision.gameObject.tag == "DownWall")
-        {
-            Down = false;
-        }
-
         if (store.GetObject() != gameObject)
         {
             return;
+        }
+
+        if (collision.gameObject.tag == "RightWall")
+        {
+            store.Right = false;
+        }
+        if (collision.gameObject.tag == "LeftWall")
+        {
+            store.Left = false;
+        }
+        if (collision.gameObject.tag == "UpWall")
+        {
+            store.Up = false;
+        }
+        if (collision.gameObject.tag == "DownWall")
+        {
+            store.Down = false;
         }
 
         if (collision.tag == "Untagged") 

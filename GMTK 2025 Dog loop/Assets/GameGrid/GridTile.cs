@@ -42,19 +42,19 @@ public class GridTile : MonoBehaviour
 
         if (selectedTiles.GetObject() != null) 
         {
-            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.right) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Right)
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.right) < 0 && selectedTiles.Right)
             {
                 return;
             }
-            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.up) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Up)
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.up) < 0 && selectedTiles.Up)
             {
                 return;
             }
-            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.down) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Down)
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.down) < 0 && selectedTiles.Down)
             {
                 return;
             }
-            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.left) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Left)
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.left) < 0 && selectedTiles.Left)
             {
                 return;
             }
