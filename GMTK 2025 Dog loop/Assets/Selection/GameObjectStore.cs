@@ -9,15 +9,6 @@ public class GameObjectStore : ScriptableObject
     [SerializeField]
     private GameObject ObjectTiles;
 
-
-    public bool Right;
-
-    public bool Left;
-
-    public bool Down;
-
-    public bool Up;
-
     public bool Blocked;
 
     public GameObject GetObject()
