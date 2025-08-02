@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NormalColor: {r: 0, g: 0, b: 0, a: 0}
   HighlightedColor: {r: 0, g: 0.95722246, b: 1, a: 1}
-  selectedTiles: {fileID: 11400000, guid: 3f146445213b8b346a40629cde0f92e1, type: 2}
+  selectedTiles: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   EmptyTile: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   Furniture: {fileID: 0}
   gamegrid: {fileID: 0}

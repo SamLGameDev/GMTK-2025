@@ -7,21 +7,27 @@ using UnityEngine;
 public class GameObjectStore : ScriptableObject
 {
     [SerializeField]
-    private List<GameObject> ObjectTiles;
+    private GameObject ObjectTiles;
 
-    public List<GameObject> GetObject()
+
+    public bool Right;
+
+    public bool Left;
+
+    public bool Down;
+
+    public bool Up;
+
+    public bool Blocked;
+
+    public GameObject GetObject()
     {
         return ObjectTiles;
     }
 
-    public void SetObjects(List<GameObject> tiles)
+    public void SetObjects(GameObject tiles)
     {
-        ObjectTiles.Clear();
         ObjectTiles = tiles;
     }
 
-    public void Clear()
-    {
-        ObjectTiles.Clear();
-    }
 }

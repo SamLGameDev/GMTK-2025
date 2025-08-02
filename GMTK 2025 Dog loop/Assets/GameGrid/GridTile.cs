@@ -13,7 +13,7 @@ public class GridTile : MonoBehaviour
     Color HighlightedColor;
 
     [SerializeField]
-    FurnitureStore selectedTiles;
+    GameObjectStore selectedTiles;
 
     [SerializeField]
     Sprite EmptyTile;
@@ -37,12 +37,30 @@ public class GridTile : MonoBehaviour
 
     private void OnMouseEnter()
     {
+
+        GetComponent<SpriteRenderer>().color = HighlightedColor;
+
         if (selectedTiles.GetObject() != null) 
         {
-            selectedTiles.GetObject().furniture.transform.position = transform.position;
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.right) < 0 && selectedTiles.Right)
+            {
+                return;
+            }
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.up) < 0 && selectedTiles.Up)
+            {
+                return;
+            }
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.down) < 0 && selectedTiles.Down)
+            {
+                return;
+            }
+            if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.left) < 0 && selectedTiles.Left)
+            {
+                return;
+            }
+            selectedTiles.GetObject().transform.position = transform.position;
         }
 
-        GetComponent<SpriteRenderer>().color = HighlightedColor; 
     }
 
     private void OnMouseExit()

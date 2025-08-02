@@ -9,7 +9,7 @@ public class RegisterFurniture : MonoBehaviour
     public Furniture furniture;
 
     [SerializeField]
-    FurnitureStore store;
+    GameObjectStore store;
 
     private void Awake()
     {
@@ -18,17 +18,72 @@ public class RegisterFurniture : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        store.GetObject().furniture.GetComponent<SpriteRenderer>().color = Color.red;
+        if (store.GetObject() != gameObject) 
+        {
+            return;
+        }
 
-        store.Blocked = true;
+        if (collision.gameObject.tag == "RightWall") 
+        {
+            store.Right = true;
+        }
+        if (collision.gameObject.tag == "LeftWall")
+        {
+            store.Left = true;
+        }
+        if (collision.gameObject.tag == "UpWall")
+        {
+            store.Up = true;
+        }
+        if (collision.gameObject.tag == "DownWall")
+        {
+            store.Down = true;
+        }
+
+
+        if (collision.tag == "Untagged")
+        {
+            store.GetObject().GetComponent<SpriteRenderer>().color = Color.red;
+
+            store.Blocked = true;
+        }
+
+
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        store.GetObject().furniture.GetComponent<SpriteRenderer>().color = Color.white;
+        if (store.GetObject() != gameObject)
+        {
+            return;
+        }
 
-        store.Blocked = false;
+        if (collision.gameObject.tag == "RightWall")
+        {
+            store.Right = false;
+        }
+        if (collision.gameObject.tag == "LeftWall")
+        {
+            store.Left = false;
+        }
+        if (collision.gameObject.tag == "UpWall")
+        {
+            store.Up = false;
+        }
+        if (collision.gameObject.tag == "DownWall")
+        {
+            store.Down = false;
+        }
+
+        if (collision.tag == "Untagged") 
+        {
+            store.GetObject().GetComponent<SpriteRenderer>().color = Color.white;
+
+            store.Blocked = false;
+        }
+
+
     }
 
 }

@@ -37,9 +37,9 @@ public class GameGrid : MonoBehaviour
     private List<PosTilePair> grid;
 
     [SerializeField]
-    private FurnitureStore selectedObject;
+    private GameObjectStore selectedObject;
 
-    public delegate void OnClicked(Furniture tile);
+    public delegate void OnClicked(GameObject tile);
 
     public OnClicked clicked;
 
@@ -142,11 +142,11 @@ public class GameGrid : MonoBehaviour
     }
 
 
-    public void SetSelected(Furniture tile)
+    public void SetSelected(GameObject furn)
     {
-        selectedObject.SetObjects(tile);
+        selectedObject.SetObjects(furn);
 
-        tile.furniture.gameObject.layer = 2;
+        furn.layer = 2;
         clicked = DropObject;
 
         print("Select");
@@ -154,7 +154,7 @@ public class GameGrid : MonoBehaviour
 
 
 
-    public void DropObject(Furniture tile)
+    public void DropObject(GameObject furn)
     {
         if (selectedObject.Blocked || !selectedObject.GetObject())
         {
@@ -164,17 +164,28 @@ public class GameGrid : MonoBehaviour
         print("Drop");
 
 
-        selectedObject.GetObject().furniture.layer = 0;
+        selectedObject.GetObject().layer = 0;
 
         selectedObject.SetObjects(null);
 
         clicked = SetSelected;
 
+        selectedObject.Left = false;
+        selectedObject.Right = false;
+        selectedObject.Up = false;
+        selectedObject.Down = false;
+
     }
 
     public void Interact()
     {
-        if (selectedObject.GetObject() != null)
+        if (!selectedObject) 
+        {
+            print("WTF");
+            return;
+        }
+
+        if (selectedObject.GetObject())
         {
             clicked.Invoke(selectedObject.GetObject());
             return;
@@ -203,9 +214,8 @@ public class GameGrid : MonoBehaviour
 
                 print("hit");
 
-                RegisterFurniture store = furn.GetComponent<RegisterFurniture>();
 
-                clicked.Invoke(store.furniture);
+                clicked.Invoke(furn);
             }
         }
     }
