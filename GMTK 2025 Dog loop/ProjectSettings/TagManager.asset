@@ -9,6 +9,8 @@ TagManager:
   - LeftWall
   - DownWall
   - UpWall
+  - PawPrint
+  - VFXCollider
   layers:
   - Default
   - TransparentFX

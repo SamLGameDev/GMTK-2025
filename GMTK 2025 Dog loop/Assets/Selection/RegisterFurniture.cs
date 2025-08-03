@@ -22,6 +22,12 @@ public class RegisterFurniture : MonoBehaviour
 
     public bool Up;
 
+    [SerializeField]
+    AudioSource furnitureDestroyedSFX;
+
+    [SerializeField]
+    ParticleSystem rubbleVFX;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
@@ -31,6 +37,8 @@ public class RegisterFurniture : MonoBehaviour
     public void SetDestroyed() 
     {
         GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
+        furnitureDestroyedSFX.Play();
+        Instantiate(rubbleVFX, this.transform.position, Quaternion.identity);
     }
 
     private void Start()
