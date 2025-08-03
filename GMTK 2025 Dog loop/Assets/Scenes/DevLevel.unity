@@ -10360,7 +10360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1224711670
 Animator:
   serializedVersion: 7
@@ -10473,6 +10473,8 @@ MonoBehaviour:
   fillSpeed: 1
   pawPrint: {fileID: 1714392283007074157, guid: fa62dcdf808e78a45a9212f1fbb717f4, type: 3}
   cameraShake: {fileID: 645979410}
+  RemainingDestructionAmount: {fileID: 11400000, guid: e83f095822b400a4ca4bd6402a2fbc1b, type: 2}
+  selectedObject: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
 --- !u!61 &1224711674
 BoxCollider2D:
   m_ObjectHideFlags: 0

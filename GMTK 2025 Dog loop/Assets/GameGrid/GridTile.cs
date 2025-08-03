@@ -80,12 +80,8 @@ public class GridTile : MonoBehaviour
                     continue;
                 }
 
-  
+                return;
 
-                if (hit.rigidbody.TryGetComponent<RegisterFurniture>(out RegisterFurniture comp)) 
-                {
-                    return;
-                }
             }
 
             if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.right) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Right)

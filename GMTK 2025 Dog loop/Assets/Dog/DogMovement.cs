@@ -39,6 +39,13 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     Animator cameraShake;
 
+    [SerializeField]
+    FloatStore RemainingDestructionAmount;
+
+    [SerializeField]
+    GameObjectStore selectedObject;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +53,7 @@ public class DogMovement : MonoBehaviour
         CreatePawPrints();
         PickTarget();
         CurrentDestroyedObjects = NumObjectsToLose;
+
     }
 
     private void PickTarget()
@@ -103,8 +111,14 @@ public class DogMovement : MonoBehaviour
 
         DestructionBar.fillAmount = CurrentFillAmount;
 
+        RemainingDestructionAmount.SetValue(CurrentFillAmount);
+
         if (DestructionBar.fillAmount <= 0) 
         {
+            if (selectedObject.GetObject()) 
+            {
+                gameGrid.DropObject(selectedObject.GetObject());
+            }
             SceneManager.LoadScene("LoseScreen");
         }
     }
