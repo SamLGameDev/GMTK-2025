@@ -84,7 +84,7 @@ public class DogMovement : MonoBehaviour
 
     private void GetRandomTarget()
     {
-        int random = Random.Range(0, 4);
+        int random = Random.Range(0, 3);
         if (random == 0)
         {
             SetTarget();
