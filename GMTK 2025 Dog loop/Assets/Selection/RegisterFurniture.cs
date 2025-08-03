@@ -25,6 +25,9 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     AudioSource furnitureDestroyedSFX;
 
+    [SerializeField]
+    ParticleSystem rubbleVFX;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
@@ -35,6 +38,7 @@ public class RegisterFurniture : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
         furnitureDestroyedSFX.Play();
+        Instantiate(rubbleVFX, this.transform.position, Quaternion.identity);
     }
 
     private void Start()
