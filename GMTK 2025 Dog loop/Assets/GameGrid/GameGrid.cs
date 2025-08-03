@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine.Tilemaps;
 using NUnit.Framework;
 using System;
@@ -76,7 +75,6 @@ public class GameGrid : MonoBehaviour
                         continue;
                     }
                     DestroyImmediate(tile.gameObject);
-                    UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
                 }
             }
         }

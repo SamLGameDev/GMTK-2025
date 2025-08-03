@@ -874,9 +874,9 @@ GameObject:
   - component: {fileID: 72974914}
   - component: {fileID: 72974916}
   - component: {fileID: 72974915}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BottomWall (1)
-  m_TagString: UpWall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -930,7 +930,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.8066468}
+  m_Offset: {x: 0, y: -0.0055468082}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -940,7 +940,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.6132936}
+  m_Size: {x: 1, y: 1.0110931}
   m_EdgeRadius: 0
 --- !u!212 &72974916
 SpriteRenderer:
@@ -3917,9 +3917,9 @@ GameObject:
   - component: {fileID: 399786679}
   - component: {fileID: 399786678}
   - component: {fileID: 399786680}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BottomWall
-  m_TagString: DownWall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4027,7 +4027,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.67154527}
+  m_Offset: {x: 0, y: -0.08899343}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4037,7 +4037,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.3430908}
+  m_Size: {x: 1, y: 0.8220141}
   m_EdgeRadius: 0
 --- !u!1 &400413964
 GameObject:
@@ -4050,9 +4050,9 @@ GameObject:
   - component: {fileID: 400413966}
   - component: {fileID: 400413965}
   - component: {fileID: 400413967}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LeftWall
-  m_TagString: LeftWall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4160,7 +4160,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.20569736, y: 0}
+  m_Offset: {x: -0.088377535, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4170,7 +4170,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.4113946, y: 1}
+  m_Size: {x: 0.8232449, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &408523811
 GameObject:
@@ -8505,9 +8505,9 @@ GameObject:
   - component: {fileID: 966119246}
   - component: {fileID: 966119245}
   - component: {fileID: 966119247}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RightWall
-  m_TagString: RightWall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8594,10 +8594,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 119
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -8611,11 +8611,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.8094013, y: 0}
+  m_Offset: {x: -0.07393837, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8625,7 +8625,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.6188025, y: 1}
+  m_Size: {x: 1.1478767, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &978370760
 GameObject:
@@ -14881,7 +14881,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 375
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 128
