@@ -41,10 +41,12 @@ public class GridTile : MonoBehaviour
     {
         if (selectedTiles.GetObject() && selectedtile) 
         {
+            BoxCollider2D boxCollider = selectedTiles.GetObject().GetComponent<BoxCollider2D>();
+
             Vector2 DrawPos = transform.position;
-            DrawPos.y += 0.5f;
-            DrawPos.x += 0.5f;
-            Gizmos.DrawWireCube(DrawPos, selectedTiles.GetObject().GetComponent<BoxCollider2D>().size);
+            DrawPos.y += boxCollider.size.y / 2;
+            DrawPos.x += 0.5f * (boxCollider.size.x - 1);
+            Gizmos.DrawWireCube(DrawPos, boxCollider.size);
         }
     }
 
@@ -61,8 +63,8 @@ public class GridTile : MonoBehaviour
             BoxCollider2D boxCollider = selectedTiles.GetObject().GetComponent<BoxCollider2D>();
 
             Vector2 DrawPos = transform.position;
-            DrawPos.y += 0.5f;
-            DrawPos.x += 0.5f;
+            DrawPos.y += boxCollider.size.y / 2;
+            DrawPos.x += 0.5f * (boxCollider.size.x - 1);
 
             hits = Physics2D.BoxCastAll(DrawPos, boxCollider.size, 0, Vector2.zero, 0, 7);
 
