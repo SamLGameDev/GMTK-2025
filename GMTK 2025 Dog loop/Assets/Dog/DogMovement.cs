@@ -49,7 +49,14 @@ public class DogMovement : MonoBehaviour
 
     public int CountdownTime;
 
+    Animator dogAnimator;
 
+    [SerializeField]
+    int animationSpeed = 5;
+    private void Awake()
+    {
+        dogAnimator = GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -172,5 +179,11 @@ public class DogMovement : MonoBehaviour
             pawPrints.Add(paw);
             paw.SetActive(false);
         }
+    }
+
+    private void SlowAnimation()
+    {
+        animationSpeed--;
+        dogAnimator.speed = animationSpeed;
     }
 }
