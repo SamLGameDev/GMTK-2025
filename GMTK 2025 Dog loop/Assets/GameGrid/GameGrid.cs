@@ -50,6 +50,9 @@ public class GameGrid : MonoBehaviour
 
     float TimeSinceLastClick = -0.5f;
 
+    [SerializeField]
+    AudioSource gridSnapSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -168,6 +171,7 @@ public class GameGrid : MonoBehaviour
 
         clicked = SetSelected;
 
+        gridSnapSFX.Play();
     }
 
     public void Interact()

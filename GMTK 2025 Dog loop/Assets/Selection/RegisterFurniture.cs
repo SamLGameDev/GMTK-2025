@@ -22,6 +22,9 @@ public class RegisterFurniture : MonoBehaviour
 
     public bool Up;
 
+    [SerializeField]
+    AudioSource furnitureDestroyedSFX;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
@@ -31,6 +34,7 @@ public class RegisterFurniture : MonoBehaviour
     public void SetDestroyed() 
     {
         GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
+        furnitureDestroyedSFX.Play();
     }
 
     private void Start()
