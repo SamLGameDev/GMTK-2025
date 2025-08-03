@@ -24,6 +24,8 @@ public class GridTile : MonoBehaviour
 
     public GameGrid gamegrid;
 
+    bool selectedtile = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,13 +37,55 @@ public class GridTile : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (selectedTiles.GetObject() && selectedtile) 
+        {
+            Vector2 DrawPos = transform.position;
+            DrawPos.y += 0.5f;
+            DrawPos.x += 0.5f;
+            Gizmos.DrawWireCube(DrawPos, selectedTiles.GetObject().GetComponent<BoxCollider2D>().size);
+        }
+    }
+
     private void OnMouseEnter()
     {
-
+        selectedtile = true;
         GetComponent<SpriteRenderer>().color = HighlightedColor;
 
         if (selectedTiles.GetObject() != null) 
         {
+
+            RaycastHit2D[] hits;
+
+            BoxCollider2D boxCollider = selectedTiles.GetObject().GetComponent<BoxCollider2D>();
+
+            Vector2 DrawPos = transform.position;
+            DrawPos.y += 0.5f;
+            DrawPos.x += 0.5f;
+
+            hits = Physics2D.BoxCastAll(DrawPos, boxCollider.size, 0, Vector2.zero, 0, 7);
+
+            foreach(RaycastHit2D hit in hits)
+            { 
+                if (!hit.rigidbody)
+                {
+                    continue;
+                }
+
+                if (hit.rigidbody.gameObject == selectedTiles.GetObject()) 
+                {
+                    continue;
+                }
+
+  
+
+                if (hit.rigidbody.TryGetComponent<RegisterFurniture>(out RegisterFurniture comp)) 
+                {
+                    return;
+                }
+            }
+
             if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.right) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Right)
             {
                 return;
@@ -65,6 +109,7 @@ public class GridTile : MonoBehaviour
 
     private void OnMouseExit()
     {
+        selectedtile = false;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.color = NormalColor;

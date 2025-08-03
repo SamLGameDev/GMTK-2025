@@ -113,6 +113,8 @@ public class DogMovement : MonoBehaviour
 
             Destroy(furn);
 
+            print("jjj");
+
             CurrentDestroyedObjects--;
 
             if (collision.gameObject == gameGrid.selectedObject.GetObject())
