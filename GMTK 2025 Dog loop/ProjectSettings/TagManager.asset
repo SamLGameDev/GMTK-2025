@@ -9,6 +9,7 @@ TagManager:
   - LeftWall
   - DownWall
   - UpWall
+  - PawPrint
   layers:
   - Default
   - TransparentFX
