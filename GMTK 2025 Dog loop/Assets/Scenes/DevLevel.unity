@@ -8733,7 +8733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxEnergy: 100
   EnergyMeter: {fileID: 1256566280}
-  Speed: 2
+  Speed: 3
 --- !u!1 &1115279503
 GameObject:
   m_ObjectHideFlags: 0
@@ -10829,7 +10829,7 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 1
+  m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
