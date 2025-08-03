@@ -11,6 +11,10 @@ public class CountDown : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI textMeshProUGUI;
+
+    [SerializeField]
+    GameObject background;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,7 @@ public class CountDown : MonoBehaviour
     {
         if (dog.CountdownTime - (int)Time.timeSinceLevelLoad <= 0) 
         {
+            background.SetActive(false);
             Destroy(gameObject);
         }
          

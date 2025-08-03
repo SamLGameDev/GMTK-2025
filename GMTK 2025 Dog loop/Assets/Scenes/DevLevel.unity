@@ -457,7 +457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -299.99997, y: -25.00001}
+  m_AnchoredPosition: {x: -299.99997, y: -49.999992}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21916231
@@ -1453,10 +1453,6 @@ MonoBehaviour:
   furniture: {fileID: 11400000, guid: d008b2aaab91c1b42bf39285dfe92b88, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   DestroyedSprite: {fileID: 5323520090838063185, guid: 7997b7891d6adf64caf4682d01daad8b, type: 3}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   furnitureDestroyedSFX: {fileID: 453921830}
   rubbleVFX: {fileID: 6063310755837214404, guid: 82642495b9443714a9dbed0025265a65, type: 3}
 --- !u!212 &134319048
@@ -3711,9 +3707,9 @@ RectTransform:
   - {fileID: 1561383817}
   m_Father: {fileID: 502689656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100.10004, y: -224.99995}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 392.8518, y: 122.1588}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369587598
@@ -4702,6 +4698,7 @@ RectTransform:
   - {fileID: 369587597}
   - {fileID: 1026873181}
   - {fileID: 21916230}
+  - {fileID: 1363081522}
   - {fileID: 1175121994}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5512,10 +5509,6 @@ MonoBehaviour:
   furniture: {fileID: 11400000, guid: b92451b201828294da3292ba9bed8a08, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   DestroyedSprite: {fileID: 8384105561139205739, guid: 792577b0d42301046b8c8f9e27b70f9a, type: 3}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   furnitureDestroyedSFX: {fileID: 453921830}
   rubbleVFX: {fileID: 6063310755837214404, guid: 82642495b9443714a9dbed0025265a65, type: 3}
 --- !u!212 &604493216
@@ -8814,9 +8807,9 @@ RectTransform:
   - {fileID: 1256566279}
   m_Father: {fileID: 502689656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -299.99997, y: 124.999985}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026873182
@@ -9668,8 +9661,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: -0.0000076294}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -5.456968e-12}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175121995
 MonoBehaviour:
@@ -9693,8 +9686,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1683b8991aa8f7459c650637a160e7c, type: 2}
+  m_sharedMaterial: {fileID: 7007102669909523613, guid: a1683b8991aa8f7459c650637a160e7c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9718,15 +9711,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 66
+  m_fontSizeBase: 66
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9784,6 +9777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dog: {fileID: 1224711673}
   textMeshProUGUI: {fileID: 1175121995}
+  background: {fileID: 1363081521}
 --- !u!1 &1181246170
 GameObject:
   m_ObjectHideFlags: 0
@@ -10767,6 +10761,7 @@ MonoBehaviour:
   selectedObject: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   countDown: 1
   CountdownTime: 5
+  animationSpeed: 5
 --- !u!61 &1224711674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11851,6 +11846,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1380280036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1363081521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363081522}
+  - component: {fileID: 1363081524}
+  - component: {fileID: 1363081523}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1363081522
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363081521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 502689656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1363081523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363081521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5529412}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1363081524
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363081521}
+  m_CullTransparentMesh: 1
 --- !u!1 &1380280031
 GameObject:
   m_ObjectHideFlags: 0
@@ -14746,10 +14816,6 @@ MonoBehaviour:
   furniture: {fileID: 11400000, guid: 4d7b3b4ef7863ea41bb1b87ae7f7e797, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   DestroyedSprite: {fileID: 3756541684458976169, guid: 5efeb50b00b6c8540836db1c8a909d74, type: 3}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   furnitureDestroyedSFX: {fileID: 453921830}
   rubbleVFX: {fileID: 6063310755837214404, guid: 82642495b9443714a9dbed0025265a65, type: 3}
 --- !u!212 &1620914930
@@ -14929,10 +14995,6 @@ MonoBehaviour:
   furniture: {fileID: 11400000, guid: 00ed30c91a5b4c547804f58f6384f53c, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   DestroyedSprite: {fileID: -4631891158273679393, guid: 55ceb76edec18914186e5acd5d72f328, type: 3}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   furnitureDestroyedSFX: {fileID: 453921830}
   rubbleVFX: {fileID: 6063310755837214404, guid: 82642495b9443714a9dbed0025265a65, type: 3}
 --- !u!212 &1622353006
@@ -15108,10 +15170,6 @@ MonoBehaviour:
   furniture: {fileID: 11400000, guid: d752dd55e71deee4788d4ef43b69ae21, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   DestroyedSprite: {fileID: 8811021385593452928, guid: d27b83a9d90c40140b0153132df65c7c, type: 3}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   furnitureDestroyedSFX: {fileID: 453921830}
   rubbleVFX: {fileID: 6063310755837214404, guid: 82642495b9443714a9dbed0025265a65, type: 3}
 --- !u!61 &1632350189
@@ -16878,10 +16936,6 @@ MonoBehaviour:
   furniture: {fileID: 11400000, guid: a12b6d9a5abb2a14a9915366558ed916, type: 2}
   store: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   DestroyedSprite: {fileID: 8384105561139205739, guid: 792577b0d42301046b8c8f9e27b70f9a, type: 3}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   furnitureDestroyedSFX: {fileID: 453921830}
   rubbleVFX: {fileID: 6063310755837214404, guid: 82642495b9443714a9dbed0025265a65, type: 3}
 --- !u!212 &1831562851
