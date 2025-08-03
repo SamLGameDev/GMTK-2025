@@ -31,9 +31,15 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     float fillSpeed;
 
+    [SerializeField]
+    GameObject pawPrint;
+
+    List<GameObject> pawPrints = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
+        pawPrints[0] = null;
         PickTarget();
         CurrentDestroyedObjects = NumObjectsToLose;
     }
@@ -64,6 +70,18 @@ public class DogMovement : MonoBehaviour
         RegisterFurniture[] objects = FindObjectsByType<RegisterFurniture>((FindObjectsSortMode.None));
 
         target = objects[Random.Range(0, objects.Length)].gameObject.transform.position;
+        Debug.Log("atempt");
+
+        if (pawPrints[0] != null)
+        {
+            Debug.Log("place pawprint");
+            GameObject print = pawPrints[pawPrints.Count - 1];
+            print.transform.position = this.transform.position;
+            print.SetActive(true);
+            pawPrints.RemoveAt(pawPrints.Count - 1);
+        }
+        else
+            CreatePawPrints();
     }
 
     // Update is called once per frame
@@ -105,4 +123,13 @@ public class DogMovement : MonoBehaviour
         }
     }
 
+    private void CreatePawPrints()
+    {
+        for (int i = 0; i < 11; i++)
+        {
+            GameObject paw = Instantiate(Instantiate(pawPrint, this.transform.position, Quaternion.identity));
+            pawPrints.Add(paw);
+            paw.SetActive(false);
+        }
+    }
 }
