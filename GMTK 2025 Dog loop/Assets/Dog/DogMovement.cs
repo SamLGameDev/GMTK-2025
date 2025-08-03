@@ -119,6 +119,8 @@ public class DogMovement : MonoBehaviour
 
             Destroy(furn);
 
+            print("jjj");
+
             CurrentDestroyedObjects--;
 
             cameraShake.Play("CameraShake");
