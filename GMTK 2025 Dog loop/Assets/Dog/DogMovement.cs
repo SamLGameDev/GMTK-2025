@@ -36,6 +36,10 @@ public class DogMovement : MonoBehaviour
 
     List<GameObject> pawPrints = new List<GameObject>(11);
 
+    [SerializeField]
+    Animator cameraShake;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -116,6 +120,8 @@ public class DogMovement : MonoBehaviour
             Destroy(furn);
 
             CurrentDestroyedObjects--;
+
+            cameraShake.Play("CameraShake");
 
             if (collision.gameObject == gameGrid.selectedObject.GetObject())
             {
