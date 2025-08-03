@@ -91,16 +91,23 @@ public class DogMovement : MonoBehaviour
         {
             RegisterFurniture furn = collision.GetComponent<RegisterFurniture>();
 
+            if (furn == null) 
+            {
+                return;
+            }
+
             furn.SetDestroyed();
-
-            Destroy(furn);
-
-            CurrentDestroyedObjects--;
 
             if (collision.gameObject == gameGrid.selectedObject.GetObject())
             {
                 gameGrid.DropObject(gameObject);
             }
+
+            Destroy(furn);
+
+            CurrentDestroyedObjects--;
+
+  
             
         }
     }

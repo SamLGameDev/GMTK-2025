@@ -152,3 +152,4 @@ MonoBehaviour:
   EmptyTile: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   Furniture: {fileID: 0}
   gamegrid: {fileID: 0}
+  LastTile: {fileID: 11400000, guid: d1a161f5486c2dc4ea85fb294f3af6ca, type: 2}

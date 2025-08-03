@@ -24,6 +24,8 @@ public class GridTile : MonoBehaviour
 
     public GameGrid gamegrid;
 
+    [SerializeField]
+    GridTileStore LastTile;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +42,32 @@ public class GridTile : MonoBehaviour
 
         GetComponent<SpriteRenderer>().color = HighlightedColor;
 
-        if (selectedTiles.GetObject() != null) 
+        if (selectedTiles.GetObject() != null)  
         {
+            RegisterFurniture furn = selectedTiles.GetObject().GetComponent<RegisterFurniture>();
+            if (!furn) 
+            {
+                selectedTiles.SetObjects(null);
+                return;
+            }
+
+            if (selectedTiles.Blocked) 
+            {
+                foreach (GameObject obj in selectedTiles.Blocking) 
+                {
+                    Vector2 dirToBlocking = obj.transform.position - selectedTiles.GetObject().transform.position;
+                    Vector2 dirToTile = transform.position - selectedTiles.GetObject().transform.position;
+                    print(Vector2.Dot(dirToBlocking.normalized, dirToTile.normalized));
+
+                    if (Vector2.Dot(dirToBlocking.normalized, dirToTile.normalized) > 0.5f)
+                    {
+                        return;
+                    }
+                }
+
+  
+            }
+
             if (Vector2.Dot(selectedTiles.GetObject().transform.position - transform.position, Vector3.right) < 0 && selectedTiles.GetObject().GetComponent<RegisterFurniture>().Right)
             {
                 return;
@@ -70,6 +96,8 @@ public class GridTile : MonoBehaviour
         spriteRenderer.color = NormalColor;
 
         spriteRenderer.sprite = EmptyTile;
+
+        LastTile.SetTiles(new List<GridTile>() { this });
 
     }
 

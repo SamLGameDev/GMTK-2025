@@ -154,8 +154,10 @@ public class GameGrid : MonoBehaviour
 
     public void DropObject(GameObject furn)
     {
-        if (selectedObject.Blocked || !selectedObject.GetObject())
+        if (!selectedObject.GetObject()) 
         {
+
+            clicked = SetSelected;
             return;
         }
 

@@ -11,6 +11,8 @@ public class GameObjectStore : ScriptableObject
 
     public bool Blocked;
 
+    public List<GameObject> Blocking;
+
     public GameObject GetObject()
     {
         return ObjectTiles;

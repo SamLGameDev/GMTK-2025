@@ -22,6 +22,9 @@ public class RegisterFurniture : MonoBehaviour
 
     public bool Up;
 
+    [SerializeField]
+    GridTileStore LastTile;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
@@ -61,13 +64,16 @@ public class RegisterFurniture : MonoBehaviour
 
         if (store.GetObject() != gameObject)
         {
+            if (collision.tag == "Untagged")
+            {
+                store.Blocking.Add(gameObject);
+            }
             return;
         }
 
         if (collision.tag == "Untagged")
         {
-            store.GetObject().GetComponent<SpriteRenderer>().color = Color.red;
-
+            transform.position = LastTile.GetTiles()[0].transform.position;
             store.Blocked = true;
         }
 
@@ -98,12 +104,15 @@ public class RegisterFurniture : MonoBehaviour
 
         if (store.GetObject() != gameObject)
         {
+            //if (collision.tag == "Untagged")
+            //{
+            //    store.Blocking.Remove(gameObject);
+            //}
             return;
         }
 
-        if (collision.tag == "Untagged") 
-        {
-            store.GetObject().GetComponent<SpriteRenderer>().color = Color.white;
+        if (collision.tag == "Untagged")
+        { 
 
             store.Blocked = false;
         }

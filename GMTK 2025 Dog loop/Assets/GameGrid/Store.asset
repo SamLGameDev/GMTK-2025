@@ -13,8 +13,5 @@ MonoBehaviour:
   m_Name: Store
   m_EditorClassIdentifier: 
   ObjectTiles: {fileID: 0}
-  Right: 0
-  Left: 0
-  Down: 0
-  Up: 0
   Blocked: 0
+  Blocking: []
