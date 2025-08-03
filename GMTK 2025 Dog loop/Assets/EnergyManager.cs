@@ -15,6 +15,9 @@ public class EnergyManager : MonoBehaviour
     [SerializeField]
     float Speed;
 
+    [SerializeField]
+    DogMovement dog;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,11 @@ public class EnergyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dog.countDown) 
+        {
+            return;
+        }
+
         EnergyMeter.fillAmount = EnergyMeter.fillAmount - Speed * Time.deltaTime / MaxEnergy;
 
         if (EnergyMeter.fillAmount <= 0)

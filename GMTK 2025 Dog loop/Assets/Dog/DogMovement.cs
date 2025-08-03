@@ -45,15 +45,28 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     GameObjectStore selectedObject;
 
+    public bool countDown = true;
+
+    public int CountdownTime;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        Invoke("CountdownOver", CountdownTime); 
+
+    }
+
+    private void CountdownOver()
+    {
         CreatePawPrints();
         PickTarget();
         CurrentDestroyedObjects = NumObjectsToLose;
-
+        countDown = false;
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     private void PickTarget()
@@ -101,6 +114,10 @@ public class DogMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (countDown) 
+        {
+            return;
+        }
         transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
         if (transform.position == (Vector3)target) 
         {
