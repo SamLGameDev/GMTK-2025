@@ -7,7 +7,7 @@ public class CountDown : MonoBehaviour
 {
 
     [SerializeField]
-    DogMovement dog;
+    DogSpawner dog;
 
     [SerializeField]
     TextMeshProUGUI textMeshProUGUI;

@@ -61,11 +61,11 @@ public class DogMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
 
-        Invoke("CountdownOver", CountdownTime); 
+        CountdownOver();
 
     }
+
 
     private void CountdownOver()
     {
