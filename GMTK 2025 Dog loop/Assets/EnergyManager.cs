@@ -16,7 +16,7 @@ public class EnergyManager : MonoBehaviour
     float Speed;
 
     [SerializeField]
-    DogMovement dog;
+    GameObjectStore DogStore;
 
 
     // Start is called before the first frame update
@@ -28,7 +28,8 @@ public class EnergyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dog.countDown) 
+
+        if (DogStore.GetObject() != null && DogStore.GetObject().GetComponent<DogMovement>().countDown) 
         {
             return;
         }

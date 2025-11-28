@@ -52,9 +52,14 @@ public class GameGrid : MonoBehaviour
     [SerializeField]
     AudioSource gridSnapSFX;
 
+    [SerializeField]
+    GameObjectStore GridRegister;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (GridRegister) GridRegister.SetObjects(gameObject);
+
         clicked = SetSelected;
     }
 
@@ -218,6 +223,8 @@ public class GameGrid : MonoBehaviour
     private void OnDestroy()
     {
         selectedObject.SetObjects(null);
+        if (GridRegister) GridRegister.SetObjects(null);
+
     }
     // Update is called once per frame
     void Update()

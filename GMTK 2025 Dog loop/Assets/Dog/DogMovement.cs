@@ -17,7 +17,6 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     Sprite Destroyedsprite;
 
-    [SerializeField]
     GameGrid gameGrid;
 
     [SerializeField]
@@ -39,17 +38,25 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     Animator cameraShake;
 
-    [SerializeField]
-    FloatStore RemainingDestructionAmount;
 
     [SerializeField]
     GameObjectStore selectedObject;
+
+    [SerializeField]
+    GameObjectStore DogRegister;
+
 
     public bool countDown = true;
 
     public int CountdownTime;
 
     Animator dogAnimator;
+
+    [SerializeField]
+    GameObjectStore GameGrid;
+
+    [SerializeField]
+    AnimatorStore cameraAnimator;
 
     [SerializeField]
     int animationSpeed = 5;
@@ -62,7 +69,10 @@ public class DogMovement : MonoBehaviour
     void Start()
     {
 
+        gameGrid = GameGrid.GetObject().GetComponent<GameGrid>();
+        DogRegister.SetObjects(gameObject);
         CountdownOver();
+        Debug.Log("Dog start called");
 
     }
 
@@ -131,20 +141,10 @@ public class DogMovement : MonoBehaviour
             GetRandomTarget();
         }
 
-        float CurrentFillAmount = Mathf.MoveTowards(DestructionBar.fillAmount, (float)CurrentDestroyedObjects / NumObjectsToLose, fillSpeed * Time.deltaTime);
 
-        DestructionBar.fillAmount = CurrentFillAmount;
 
-        RemainingDestructionAmount.SetValue(CurrentFillAmount);
 
-        if (DestructionBar.fillAmount <= 0) 
-        {
-            if (selectedObject.GetObject()) 
-            {
-                gameGrid.DropObject(selectedObject.GetObject());
-            }
-            SceneManager.LoadScene("LoseScreen");
-        }
+     
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -152,6 +152,8 @@ public class DogMovement : MonoBehaviour
         if (collision.tag == "Untagged") 
         {
             RegisterFurniture furn = collision.GetComponent<RegisterFurniture>();
+
+            if (!furn) return;
 
             furn.SetDestroyed();
 
@@ -161,7 +163,7 @@ public class DogMovement : MonoBehaviour
 
             CurrentDestroyedObjects--;
 
-            cameraShake.Play("CameraShake");
+            cameraAnimator.GetObject().Play("CameraShake");
 
             if (collision.gameObject == gameGrid.selectedObject.GetObject())
             {
@@ -171,6 +173,14 @@ public class DogMovement : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        DogRegister.SetObjects(null);
+        if (selectedObject.GetObject())
+        {
+            gameGrid.DropObject(selectedObject.GetObject());
+        }
+    }
     private void CreatePawPrints()
     {
         for (int i = 0; i < 11; i++)

@@ -20,10 +20,15 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     ParticleSystem rubbleVFX;
 
+    [SerializeField]
+    FurnitureSet currentFurniture;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
         GetComponent<BoxCollider2D>().enabled = false;
+        currentFurniture.Add(this);
+
     }
 
     public void SetDestroyed() 
@@ -36,6 +41,11 @@ public class RegisterFurniture : MonoBehaviour
     private void Start()
     {
         GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        currentFurniture.Remove(this);
     }
 
 }
