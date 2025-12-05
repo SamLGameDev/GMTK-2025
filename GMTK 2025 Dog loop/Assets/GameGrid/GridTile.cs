@@ -52,44 +52,44 @@ public class GridTile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        selectedtile = true;
-        GetComponent<SpriteRenderer>().color = HighlightedColor;
+        //selectedtile = true;
+        //GetComponent<SpriteRenderer>().color = HighlightedColor;
 
-        if (selectedTiles.GetObject() != null) 
-        {
+        //if (selectedTiles.GetObject() != null)
+        //{
 
-            RaycastHit2D[] hits;
+        //    RaycastHit2D[] hits;
 
-            BoxCollider2D boxCollider = selectedTiles.GetObject().GetComponent<BoxCollider2D>();
+        //    BoxCollider2D boxCollider = selectedTiles.GetObject().GetComponent<BoxCollider2D>();
 
-            Vector2 DrawPos = transform.position;
-            DrawPos.y += boxCollider.size.y / 2;
-            DrawPos.x += 0.5f * (boxCollider.size.x - 1);
+        //    Vector2 DrawPos = transform.position;
+        //    DrawPos.y += boxCollider.size.y / 2;
+        //    DrawPos.x += 0.5f * (boxCollider.size.x - 1);
 
-            hits = Physics2D.BoxCastAll(DrawPos, boxCollider.size, 0, Vector2.zero, 0, 7);
+        //    hits = Physics2D.BoxCastAll(DrawPos, boxCollider.size, 0, Vector2.zero, 0, 7);
 
-            foreach(RaycastHit2D hit in hits)
-            { 
-                if (!hit.rigidbody)
-                {
-      
-                    if (hit.collider.gameObject.tag == "Wall") 
-                    {
-                        return;
-                    }
-                    continue;
-                }
+        //    foreach (RaycastHit2D hit in hits)
+        //    {
+        //        if (!hit.rigidbody)
+        //        {
 
-                if (hit.rigidbody.gameObject == selectedTiles.GetObject()) 
-                {
-                    continue;
-                }
+        //            if (hit.collider.gameObject.tag == "Wall")
+        //            {
+        //                return;
+        //            }
+        //            continue;
+        //        }
 
-                return;
+        //        if (hit.rigidbody.gameObject == selectedTiles.GetObject())
+        //        {
+        //            continue;
+        //        }
 
-            }
-            selectedTiles.GetObject().transform.position = transform.position;
-        }
+        //        return;
+
+        //    }
+        //    selectedTiles.GetObject().transform.position = transform.position;
+        //}
 
     }
 
