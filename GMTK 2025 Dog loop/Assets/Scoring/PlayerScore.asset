@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d5a22e489697a49946fd03ec5e6cfd, type: 3}
-  m_Name: CoffeeTable
+  m_Script: {fileID: 11500000, guid: a926ab1257fb3d146ae9cc792f15fe5b, type: 3}
+  m_Name: PlayerScore
   m_EditorClassIdentifier: 
-  furniture: {fileID: 0}
-  Size: {x: 0, y: 0}
-  ScoreType: 0
-  possibleScores: {fileID: 11400000, guid: ff48e14d702bbe84faa3d5b967af6167, type: 2}

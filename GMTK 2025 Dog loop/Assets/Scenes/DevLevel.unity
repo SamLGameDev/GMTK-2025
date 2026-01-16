@@ -3701,6 +3701,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 411399210873547392, guid: 0fe3fbf6c260ce14a89a17090bfcf69d, type: 3}
   m_PrefabInstance: {fileID: 505765952400732512}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &386187903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386187905}
+  - component: {fileID: 386187904}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &386187904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386187903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e07fa47a800a424f89a9ff12b4ec58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RemainingFurniture: {fileID: 11400000, guid: 414bb742113b1ae43944e360c5bdccf3, type: 2}
+  TotalScore: {fileID: 11400000, guid: 39044ce941670c646b449bbe9981b0c3, type: 2}
+--- !u!4 &386187905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386187903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.4341226, y: 4.252158, z: 0.04561825}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389960310
 GameObject:
   m_ObjectHideFlags: 0
@@ -11936,6 +11982,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9d9fa3ae-3e09-4fe6-a1dd-c2d6cc4e727f
     m_ActionName: 'Play/Interact[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a0efcfe-987a-4a3c-995e-08cb4840befd
+    m_ActionName: 'Play/UpdatePos[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Play
@@ -20674,3 +20724,4 @@ SceneRoots:
   - {fileID: 453921831}
   - {fileID: 9188495803184239691}
   - {fileID: 1089143681}
+  - {fileID: 386187905}
