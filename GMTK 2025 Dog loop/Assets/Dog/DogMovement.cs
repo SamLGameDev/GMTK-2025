@@ -60,6 +60,8 @@ public class DogMovement : MonoBehaviour
 
     [SerializeField]
     int animationSpeed = 5;
+
+    [SerializeField] private SelectedObjectMoverStore Mover;
     private void Awake()
     {
         dogAnimator = GetComponent<Animator>();
@@ -149,7 +151,7 @@ public class DogMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Untagged") 
+        if (collision.CompareTag("Untagged")) 
         {
             RegisterFurniture furn = collision.GetComponent<RegisterFurniture>();
 
@@ -159,15 +161,13 @@ public class DogMovement : MonoBehaviour
 
             Destroy(furn);
 
-            print("jjj");
-
             CurrentDestroyedObjects--;
 
             cameraAnimator.GetObject().Play("CameraShake");
 
             if (collision.gameObject == gameGrid.selectedObject.GetObject())
             {
-                gameGrid.DropObject(gameObject);
+                Mover.GetObject().StopMovingObject();
             }
             
         }
@@ -178,7 +178,7 @@ public class DogMovement : MonoBehaviour
         DogRegister.SetObjects(null);
         if (selectedObject.GetObject())
         {
-            gameGrid.DropObject(selectedObject.GetObject());
+           Mover.GetObject().StopMovingObject();
         }
     }
     private void CreatePawPrints()

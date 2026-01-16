@@ -140,6 +140,7 @@ MonoBehaviour:
   GameGrid: {fileID: 11400000, guid: fceb7801cd553b048a6f8d03ddc70db5, type: 2}
   cameraAnimator: {fileID: 11400000, guid: 54159ad77c1dddf458a4075ca6f72fda, type: 2}
   animationSpeed: 5
+  Mover: {fileID: 11400000, guid: f0c09009bdfaaaf4ab9f847fed1888b0, type: 2}
 --- !u!61 &5595856163444613052
 BoxCollider2D:
   m_ObjectHideFlags: 0

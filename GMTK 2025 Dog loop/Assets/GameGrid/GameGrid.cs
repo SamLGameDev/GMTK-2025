@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 using NUnit.Framework;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 
 public class GameGrid : MonoBehaviour
@@ -36,10 +38,6 @@ public class GameGrid : MonoBehaviour
 
     public GameObjectStore selectedObject;
 
-    public delegate void OnClicked(GameObject tile);
-
-    public OnClicked clicked;
-
     [Serializable]
     struct PosTilePair 
     {
@@ -49,8 +47,7 @@ public class GameGrid : MonoBehaviour
 
     float TimeSinceLastClick = -0.5f;
 
-    [SerializeField]
-    AudioSource gridSnapSFX;
+
 
     [SerializeField]
     GameObjectStore GridRegister;
@@ -59,8 +56,6 @@ public class GameGrid : MonoBehaviour
     void Start()
     {
         if (GridRegister) GridRegister.SetObjects(gameObject);
-
-        clicked = SetSelected;
     }
 
     [ContextMenu("DrawGrid")]
@@ -146,80 +141,6 @@ public class GameGrid : MonoBehaviour
     }
 
 
-    public void SetSelected(GameObject furn)
-    {
-        selectedObject.SetObjects(furn);
-
-        furn.layer = 2;
-        clicked = DropObject;
-
-        print("Select");
-    }
-
-
-
-    public void DropObject(GameObject furn)
-    {
-        if (selectedObject.Blocked || !selectedObject.GetObject())
-        {
-            return;
-        }
-
-        print("Drop");
-
-
-        selectedObject.GetObject().layer = 0;
-
-        selectedObject.SetObjects(null);
-
-        clicked = SetSelected;
-
-        gridSnapSFX.Play();
-    }
-
-    public void Interact()
-    {
-        if (!selectedObject) 
-        {
-            print("WTF");
-            return;
-        }
-
-        if (selectedObject.GetObject())
-        {
-            clicked.Invoke(selectedObject.GetObject());
-            return;
-        }
-
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = -cam.transform.position.z;
-        Vector3 Pos = cam.ScreenToWorldPoint(mousePos);
-        Pos.z = 1;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(Pos, 0.2f, Vector2.zero, 0, 7);
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit)
-            {
-
-                if (!hit.rigidbody || !hit.rigidbody.GetComponent<RegisterFurniture>())
-                {
-
-
-                    print(hit.collider.gameObject.name);
-                    return;
-                }
-
-                GameObject furn = hit.rigidbody.gameObject;
-
-
-                print("hit");
-
-
-                clicked.Invoke(furn);
-            }
-        }
-    }
-
     private void OnDestroy()
     {
         selectedObject.SetObjects(null);
@@ -229,6 +150,7 @@ public class GameGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 }
 
