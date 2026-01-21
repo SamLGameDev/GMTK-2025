@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -23,6 +24,5 @@ public class ScoreManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("PersonalHighScore", TotalScore.GetValue());
         }
-
     }
 }
