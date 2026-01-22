@@ -2,51 +2,59 @@ using System;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using Unity.Services.Core;
+using Unity.Services.Authentication;
+using Unity.Services.Leaderboards;
+using Unity.Services.Leaderboards.Models;
+using UnityEditor.Rendering.Universal;
+using TMPro;
+using System.Threading.Tasks;
 
 public class LeaderboardRequests : MonoBehaviour
 {
+
+    [SerializeField] private string leaderboardId = "389441346196146146";
+
+    [SerializeField] private Transform LeaderBoardContentParent;
+
+    [SerializeField] private Transform LeaderBoardSlotPrefab;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    async void Start()
     {
-        
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, 0);
+
+        UpdateLeaderBoard();
     }
 
-    public struct LeaderboardData
+    private async void UpdateLeaderBoard() 
     {
-        public string Name;
-        public int Score;
-    }
-
-    private LeaderboardData[] leaderboardDatas;
-
-    public void PostScore(LeaderboardData data)
-    {
-        string SONData = JsonUtility.ToJson(data);
-        byte[] raw = System.Text.Encoding.UTF8.GetBytes(SONData);
-
-        UnityWebRequest request;
-        if (Array.Exists(leaderboardDatas, name => name.Name == data.Name))
+        while (Application.isPlaying)
         {
-            foreach (var entry in leaderboardDatas)
-            {
-                if (entry.Name == data.Name)
-                {
-                    if (data.Score > entry.Score)
-                    {
-                        request = UnityWebRequest.Put("https://example.com/leaderboard/update", raw);
-                        request.SetRequestHeader("Content-Type", "application/json");
-                        request.method = UnityWebRequest.kHttpVerbPUT;
-                        request.SendWebRequest();
-                    }
-                    return;
-                }
-            }
-        }
-        request = UnityWebRequest.Post("https://example.com/leaderboard/add", SONData);
-        request.SetRequestHeader("Content-Type", "application/json");
-        request.method = UnityWebRequest.kHttpVerbPOST;
-        request.SendWebRequest();
+           LeaderboardScoresPage leaderboardScoresPage = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
 
+            for(int i =0; i < leaderboardScoresPage.Total; i++) 
+            {
+                var entry = leaderboardScoresPage.Results[i];
+
+                Transform display;
+
+                if (i == LeaderBoardContentParent.childCount) 
+                {
+                    display = Instantiate(LeaderBoardSlotPrefab, LeaderBoardContentParent);
+                }
+                else 
+                {
+                    display = LeaderBoardContentParent.GetChild(i);
+                }
+                display.GetChild(1).GetComponent<TextMeshProUGUI>().text = entry.Score.ToString();
+                display.GetChild(2).GetComponent<TextMeshProUGUI>().text = entry.PlayerName.ToString();
+            }
+            await Task.Delay(1000);
+        }
     }
 
     // Update is called once per frame

@@ -70,7 +70,6 @@ PlayerSettings:
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 1
-  androidDisplayOptions: 1
   androidBlitType: 0
   androidResizeableActivity: 0
   androidDefaultWindowWidth: 1920
@@ -938,11 +937,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 638816d8-1386-4ebf-b7b5-e4e45d1c223a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Gmtk Game Jam
+  organizationId: sam_lloyd
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
