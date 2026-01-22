@@ -1,6 +1,8 @@
 using System;
+using Unity.Services.Leaderboards;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -9,20 +11,21 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private FloatStore TotalScore;
 
+    [SerializeField]
+    private string LeaderBoardID;
+
     private void Start()
     {
         TotalScore.SetValue(0f);
     }
 
-    private void OnDestroy()
+    private async void OnDestroy()
     {
         foreach (RegisterFurniture furn in RemainingFurniture.GetItems())
         {
             TotalScore.SetValue(furn.furniture.GetScore() + TotalScore.GetValue());
         }
-        if (TotalScore.GetValue() > PlayerPrefs.GetFloat("PersonalHighScore"))
-        {
-            PlayerPrefs.SetFloat("PersonalHighScore", TotalScore.GetValue());
-        }
+
+        await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderBoardID, TotalScore.GetValue());
     }
 }
