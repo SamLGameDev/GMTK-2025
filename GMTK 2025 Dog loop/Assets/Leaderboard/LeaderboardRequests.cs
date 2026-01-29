@@ -9,6 +9,7 @@ using Unity.Services.Leaderboards.Models;
 using UnityEditor.Rendering.Universal;
 using TMPro;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardRequests : MonoBehaviour
 {
@@ -19,18 +20,23 @@ public class LeaderboardRequests : MonoBehaviour
 
     [SerializeField] private Transform LeaderBoardSlotPrefab;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    async void Start()
+    public async void Awake()
     {
-        await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        if (FindAnyObjectByType<AccountManager>()) 
+        {
+            UpdateLeaderBoard();
+            return;
+        }
 
-        await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, 0);
+        await SceneManager.LoadSceneAsync("AccountSignIn", LoadSceneMode.Additive);
 
-        UpdateLeaderBoard();
     }
 
-    private async void UpdateLeaderBoard() 
+    public void StartLeaderboardUpdate() 
+    {
+        UpdateLeaderBoard();
+    }
+    public async void UpdateLeaderBoard() 
     {
         while (Application.isPlaying)
         {

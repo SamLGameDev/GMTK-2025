@@ -1,4 +1,5 @@
 using System;
+using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -24,6 +25,11 @@ public class ScoreManager : MonoBehaviour
         foreach (RegisterFurniture furn in RemainingFurniture.GetItems())
         {
             TotalScore.SetValue(furn.furniture.GetScore() + TotalScore.GetValue());
+        }
+
+        if (!AuthenticationService.Instance.IsSignedIn) 
+        {
+            return;
         }
 
         await LeaderboardsService.Instance.AddPlayerScoreAsync(LeaderBoardID, TotalScore.GetValue());

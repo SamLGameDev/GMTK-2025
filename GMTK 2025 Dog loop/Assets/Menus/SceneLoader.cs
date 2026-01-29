@@ -8,10 +8,8 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
 
-    public async void LoadScene(string Name) 
+    public void LoadScene(string Name) 
     {
-        await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
         SceneManager.LoadScene(Name);
     }
 
