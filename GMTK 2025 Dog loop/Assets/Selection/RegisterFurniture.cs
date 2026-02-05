@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RegisterFurniture : MonoBehaviour
 {
@@ -14,14 +15,17 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     Sprite DestroyedSprite;
 
-    [SerializeField]
-    AudioSource furnitureDestroyedSFX;
+    /*[SerializeField]
+    AudioSource furnitureDestroyedSFX;*/
 
     [SerializeField]
     ParticleSystem rubbleVFX;
 
     [SerializeField]
     FurnitureSet currentFurniture;
+
+    [SerializeField]
+    TextMeshProUGUI scoreDisplay;
 
     private void Awake()
     {
@@ -34,7 +38,9 @@ public class RegisterFurniture : MonoBehaviour
     public void SetDestroyed() 
     {
         GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
-        furnitureDestroyedSFX.Play();
+        AudioSource furnitureDestroyedSFX = GameObject.FindGameObjectWithTag("DestroySFX").GetComponent<AudioSource>();
+        if (furnitureDestroyedSFX != null )
+            furnitureDestroyedSFX.Play();
         Instantiate(rubbleVFX, this.transform.position, Quaternion.identity);
     }
 
