@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class RegisterFurniture : MonoBehaviour
 {
@@ -27,12 +28,14 @@ public class RegisterFurniture : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI scoreDisplay;
 
+    private BoxCollider2D collider;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
-        GetComponent<BoxCollider2D>().enabled = false;
+        collider = GetComponent<BoxCollider2D>();
+        collider.enabled = false;
         currentFurniture.Add(this);
-
     }
 
     public void SetDestroyed() 
@@ -46,7 +49,13 @@ public class RegisterFurniture : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<BoxCollider2D>().enabled = true;
+        collider.enabled = true;
+
+        Vector3 scorePos = scoreDisplay.transform.parent.position;
+        scorePos.x += this.collider.size.x / 2;
+        scorePos.x -= scoreDisplay.transform.localScale.x / 2;
+        scorePos.y += this.collider.size.y + 0.5f;
+        scoreDisplay.transform.parent.position = scorePos;
     }
 
     private void OnDestroy()
