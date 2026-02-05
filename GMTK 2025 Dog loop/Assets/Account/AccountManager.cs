@@ -69,6 +69,8 @@ public class AccountManager : MonoBehaviour
 
     public async void SignInPasswordUsername() 
     {
+        if (Username.text.Contains('#')) return;
+
         if (PlayerAccountService.Instance.IsSignedIn)
         {
 
@@ -87,10 +89,11 @@ public class AccountManager : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(Username.text, Password.text);
+            await AuthenticationService.Instance.UpdatePlayerNameAsync(Username.text);
             CurrentUsername = Username.text;
             CurrentPassword = Password.text;
             OnAccountSignedIn.Raise();
-            await SceneManager.UnloadSceneAsync("AccountSignIn");
+          //  await SceneManager.UnloadSceneAsync("AccountSignIn");
             return;
         }
         catch (RequestFailedException ex)
@@ -99,10 +102,12 @@ public class AccountManager : MonoBehaviour
             try
             {
                 await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(Username.text, Password.text);
+                await AuthenticationService.Instance.UpdatePlayerNameAsync(Username.text);
+
                 CurrentUsername = Username.text;
                 CurrentPassword = Password.text;
                 OnAccountSignedIn.Raise();
-                await SceneManager.UnloadSceneAsync("AccountSignIn");
+           //     await SceneManager.UnloadSceneAsync("AccountSignIn");
                 return;
             }
             catch (RequestFailedException ex2)
@@ -113,14 +118,43 @@ public class AccountManager : MonoBehaviour
 
     }
 
-    async void SignInWithUnity() 
+    public async void LinkWithUnity() 
     {
         try
         {
-            await AuthenticationService.Instance.SignInWithUnityAsync(PlayerAccountService.Instance.AccessToken);
-            //ExternalIds = GetExternalIds(AuthenticationService.Instance.PlayerInfo);
+            if (!PlayerAccountService.Instance.IsSignedIn) { await PlayerAccountService.Instance.StartSignInAsync(); }
+
+            LinkOptions options = new LinkOptions();
+            options.ForceLink = true;
+           // await AuthenticationService.Instance.A(PlayerAccountService.Instance.AccessToken);
+            await AuthenticationService.Instance.LinkWithUnityAsync(PlayerAccountService.Instance.AccessToken,options);
+            OnAccountSignedIn.Raise();
+            await SceneManager.UnloadSceneAsync("AccountSignIn");
+            // ExternalIds = GetExternalIds(AuthenticationService.Instance.PlayerInfo);
         }
         catch (RequestFailedException ex) 
+        {
+            Debug.LogException(ex);
+        }
+    }
+
+
+    public async void SignInWithUnity()
+    {
+        try
+        {
+            if (!PlayerAccountService.Instance.IsSignedIn) { await PlayerAccountService.Instance.StartSignInAsync(); }
+
+            LinkOptions options = new LinkOptions();
+            options.ForceLink = true;
+             await AuthenticationService.Instance.SignInWithUnityAsync(PlayerAccountService.Instance.AccessToken);
+            //await AuthenticationService.Instance.LinkWithUnityAsync(PlayerAccountService.Instance.AccessToken, options);
+            OnAccountSignedIn.Raise();
+            await SceneManager.UnloadSceneAsync("AccountSignIn");
+            // ExternalIds = GetExternalIds(AuthenticationService.Instance.PlayerInfo);
+            // ExternalIds = GetExternalIds(AuthenticationService.Instance.PlayerInfo);
+        }
+        catch (RequestFailedException ex)
         {
             Debug.LogException(ex);
         }

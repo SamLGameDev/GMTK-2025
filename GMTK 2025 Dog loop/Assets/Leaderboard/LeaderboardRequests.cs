@@ -57,7 +57,10 @@ public class LeaderboardRequests : MonoBehaviour
                     display = LeaderBoardContentParent.GetChild(i);
                 }
                 display.GetChild(1).GetComponent<TextMeshProUGUI>().text = entry.Score.ToString();
-                display.GetChild(2).GetComponent<TextMeshProUGUI>().text = entry.PlayerName.ToString();
+
+                string playerName = entry.PlayerName.Split('#')[0];
+
+                display.GetChild(2).GetComponent<TextMeshProUGUI>().text = playerName;
             }
             await Task.Delay(1000);
         }

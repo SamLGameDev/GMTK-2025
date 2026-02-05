@@ -3731,7 +3731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RemainingFurniture: {fileID: 11400000, guid: 414bb742113b1ae43944e360c5bdccf3, type: 2}
   TotalScore: {fileID: 11400000, guid: 39044ce941670c646b449bbe9981b0c3, type: 2}
-  LeaderBoardID: ' 389441346196146146'
+  LeaderBoardID: 389441346196146146
 --- !u!4 &386187905
 Transform:
   m_ObjectHideFlags: 0
