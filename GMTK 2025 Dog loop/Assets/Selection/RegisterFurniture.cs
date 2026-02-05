@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using Cysharp.Threading.Tasks;
 
 public class RegisterFurniture : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class RegisterFurniture : MonoBehaviour
     TextMeshProUGUI scoreDisplay;
 
     private BoxCollider2D collider;
+
+    private float scoreCountDown;
+    private bool triggerDisplay = false;
 
     private void Awake()
     {
@@ -58,9 +62,37 @@ public class RegisterFurniture : MonoBehaviour
         scoreDisplay.transform.parent.position = scorePos;
     }
 
+    private void Update()
+    {
+    }
+
     private void OnDestroy()
     {
         currentFurniture.Remove(this);
     }
 
+    public async UniTask TriggerScoreDisplay()
+    {
+        while (true)
+        {
+            if (!triggerDisplay)
+            {
+                triggerDisplay = true;
+                scoreCountDown = furniture.GetScore();
+                scoreDisplay.gameObject.SetActive(true);
+            }
+
+            scoreCountDown -= 1;
+            scoreDisplay.text = scoreCountDown.ToString();
+
+            if (scoreCountDown == 0)
+            {
+                triggerDisplay = false;
+                CancelInvoke();
+                break;
+            }
+            await UniTask.WaitForSeconds(0.075f);
+        }
+
+    }
 }

@@ -8642,11 +8642,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edaa9b2f2b12d2479b9cb37a229df09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnergy: 100
+  MaxEnergy: 15
   EnergyMeter: {fileID: 1256566280}
   Speed: 3
   DogStore: {fileID: 11400000, guid: 3da5f0acc10585f4a9582bcb274c6e49, type: 2}
   scoreManager: {fileID: 0}
+  winScreenDelay: 5
+  RemainingFurniture: {fileID: 11400000, guid: 414bb742113b1ae43944e360c5bdccf3, type: 2}
 --- !u!1001 &1027760519
 PrefabInstance:
   m_ObjectHideFlags: 0
