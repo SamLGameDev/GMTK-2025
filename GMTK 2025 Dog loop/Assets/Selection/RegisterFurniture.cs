@@ -31,6 +31,8 @@ public class RegisterFurniture : MonoBehaviour
 
     private BoxCollider2D collider;
 
+    private SpriteRenderer spriteRenderer;
+
     private float scoreCountDown;
     private bool triggerDisplay = false;
 
@@ -38,13 +40,15 @@ public class RegisterFurniture : MonoBehaviour
     {
         furniture.furniture = gameObject;
         collider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         collider.enabled = false;
         currentFurniture.Add(this);
     }
 
     public void SetDestroyed() 
     {
-        GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
+        spriteRenderer.sprite = DestroyedSprite;
+        spriteRenderer.color = Color.grey;
         AudioSource furnitureDestroyedSFX = GameObject.FindGameObjectWithTag("DestroySFX").GetComponent<AudioSource>();
         if (furnitureDestroyedSFX != null )
             furnitureDestroyedSFX.Play();
