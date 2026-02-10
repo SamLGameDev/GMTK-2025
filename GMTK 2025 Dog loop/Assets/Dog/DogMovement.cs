@@ -61,6 +61,8 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     int animationSpeed = 5;
 
+    private bool stopDog = false;
+
     [SerializeField] private SelectedObjectMoverStore Mover;
     private void Awake()
     {
@@ -75,7 +77,7 @@ public class DogMovement : MonoBehaviour
         DogRegister.SetObjects(gameObject);
         CountdownOver();
         Debug.Log("Dog start called");
-
+        stopDog = false;
     }
 
 
@@ -90,6 +92,9 @@ public class DogMovement : MonoBehaviour
 
     private void PickTarget()
     {
+        if (stopDog)
+            return;
+
         GetRandomTarget();
         Invoke("PickTarget", NewTargetTime);
     }
@@ -137,6 +142,10 @@ public class DogMovement : MonoBehaviour
         {
             return;
         }
+
+        if (stopDog)
+            return;
+
         transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
         if (transform.position == (Vector3)target) 
         {
@@ -151,6 +160,9 @@ public class DogMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (stopDog)
+            return;
+
         if (collision.CompareTag("Untagged")) 
         {
             RegisterFurniture furn = collision.GetComponent<RegisterFurniture>();
@@ -195,5 +207,10 @@ public class DogMovement : MonoBehaviour
     {
         animationSpeed--;
         dogAnimator.speed = animationSpeed;
+    }
+
+    public void StopDog()
+    {
+        stopDog = true;
     }
 }

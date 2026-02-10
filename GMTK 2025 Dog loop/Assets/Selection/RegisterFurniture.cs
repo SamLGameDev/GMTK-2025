@@ -98,7 +98,7 @@ public class RegisterFurniture : MonoBehaviour
                 CancelInvoke();
                 break;
             }
-            await UniTask.WaitForSeconds(0.075f);
+            await UniTask.WaitForSeconds(0.1f);
         }
 
     }
