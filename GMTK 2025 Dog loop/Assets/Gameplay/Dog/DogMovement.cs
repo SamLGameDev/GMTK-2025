@@ -81,6 +81,7 @@ public class DogMovement : MonoBehaviour
 
     [SerializeField] private GameEvent OnSqeakyToyOver;
 
+    [SerializeField] private AudioSource dogPlayingWithToy;
 
     private void Awake()
     {
@@ -98,7 +99,6 @@ public class DogMovement : MonoBehaviour
         MoveTowardsObject(movingToObjectCTS.Token);
 
     }
-
 
     private void CountdownOver()
     {
@@ -167,6 +167,7 @@ public class DogMovement : MonoBehaviour
 
     public void StartSqueakyToyWait()
     {
+        dogPlayingWithToy.Play();
         movingToObjectCTS.Cancel();
         SqueakToyWait();
 

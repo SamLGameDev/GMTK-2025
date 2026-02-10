@@ -7,9 +7,12 @@ public class SqueakToyPowerup : MonoBehaviour, ISelectable
     [SerializeField] private GameObjectSet PowerupPool;
 
     [SerializeField] private Color InvalidColor;
+
+    [SerializeField] private AudioSource squeakerDropped;
         
     public void OnDrop()
     {
+        squeakerDropped.Play();
         SquekyToyDropped.Raise(transform.position);
     }
 

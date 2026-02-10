@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class PowerupSpawner : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class PowerupSpawner : MonoBehaviour
 
     [SerializeField]
     private BoolStore CanUseAbilities;
+
+    [SerializeField] private AudioSource squeakySelection;
+
+    [SerializeField] private TextMeshProUGUI remainingToysDisplay;
+
     private void Start()
     {
         for (UInt16 i = 0 ; i < NumPowerUps; i++)
@@ -28,6 +34,8 @@ public class PowerupSpawner : MonoBehaviour
             PowerupPool.Add(powerup);
             powerup.SetActive(false);
         }
+
+        remainingToysDisplay.text = PowerupPool.GetListSize().ToString();
     }
 
     public void Spawn()
@@ -43,5 +51,8 @@ public class PowerupSpawner : MonoBehaviour
         powerup.layer = 2;
             
         Mover.StartMovingObject();
+
+        squeakySelection.Play();
+        remainingToysDisplay.text = PowerupPool.GetListSize().ToString();
     }
 }
