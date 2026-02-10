@@ -1,5 +1,8 @@
+using Cysharp.Threading.Tasks;
+using Gameplay.Furniture;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -61,7 +64,24 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     int animationSpeed = 5;
 
+    [SerializeField] private SquekyToyInfo SqueakyInfo;
+
     [SerializeField] private SelectedObjectMoverStore Mover;
+
+    CancellationTokenSource movingToObjectCTS = new CancellationTokenSource();
+
+    delegate void FOnReachedObject();
+
+    private FOnReachedObject OnReachedObject;
+
+    [SerializeField]
+     private BoolStore CanUseAbilities;
+
+    CancellationTokenSource PickTargetCTS = new CancellationTokenSource();
+
+    [SerializeField] private GameEvent OnSqeakyToyOver;
+
+
     private void Awake()
     {
         dogAnimator = GetComponent<Animator>();
@@ -74,7 +94,8 @@ public class DogMovement : MonoBehaviour
         gameGrid = GameGrid.GetObject().GetComponent<GameGrid>();
         DogRegister.SetObjects(gameObject);
         CountdownOver();
-        Debug.Log("Dog start called");
+        OnReachedObject += GetRandomTarget;
+        MoveTowardsObject(movingToObjectCTS.Token);
 
     }
 
@@ -82,16 +103,24 @@ public class DogMovement : MonoBehaviour
     private void CountdownOver()
     {
         CreatePawPrints();
-        PickTarget();
+        PickTarget(PickTargetCTS.Token);
         CurrentDestroyedObjects = NumObjectsToLose;
         countDown = false;
         GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    private void PickTarget()
+    private async UniTask PickTarget(CancellationToken Token)
     {
-        GetRandomTarget();
-        Invoke("PickTarget", NewTargetTime);
+        while (true)
+        {
+            if (Token.IsCancellationRequested)
+            {
+                break;
+            }
+
+            GetRandomTarget();
+            await UniTask.WaitForSeconds(NewTargetTime);
+        }
     }
 
     private void GetRandomTarget()
@@ -115,12 +144,8 @@ public class DogMovement : MonoBehaviour
 
         target = objects[Random.Range(0, objects.Length)].gameObject.transform.position;
 
-
-        Debug.Log("atempt");
-
         if (pawPrints[0] != null)
         {
-            Debug.Log("place pawprint");
             GameObject print = pawPrints[pawPrints.Count - 1];
             print.transform.position = this.transform.position;
             print.SetActive(true);
@@ -130,23 +155,61 @@ public class DogMovement : MonoBehaviour
             CreatePawPrints();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetTarget(Vector3 Target)
     {
-        if (countDown) 
+
+        OnReachedObject -= GetRandomTarget;
+        PickTargetCTS.Cancel();
+        target = Target;
+        OnReachedObject += StartSqueakyToyWait;
+        CanUseAbilities.SetValue(false);
+    }
+
+    public void StartSqueakyToyWait()
+    {
+        movingToObjectCTS.Cancel();
+        SqueakToyWait();
+
+    }
+
+    public async UniTask SqueakToyWait()
+    {
+        await UniTask.WaitForSeconds(SqueakyInfo.Duration);
+        OnReachedObject -= StartSqueakyToyWait;
+        OnReachedObject += GetRandomTarget;
+
+        OnSqeakyToyOver.Raise();
+
+        PickTargetCTS = new CancellationTokenSource();
+
+        PickTarget(PickTargetCTS.Token);
+
+        movingToObjectCTS = new CancellationTokenSource();
+        MoveTowardsObject(movingToObjectCTS.Token);
+
+        CanUseAbilities.SetValue(true);
+
+    }
+
+
+    public async UniTask MoveTowardsObject(CancellationToken Token)
+    {
+        while (true)
         {
-            return;
+            transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);
+            if (transform.position.Equals(target))
+            {
+                OnReachedObject.Invoke();
+            }
+
+            if (Token.IsCancellationRequested)
+            {
+                break;
+            }
+
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+
         }
-        transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
-        if (transform.position == (Vector3)target) 
-        {
-            GetRandomTarget();
-        }
-
-
-
-
-     
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -157,18 +220,17 @@ public class DogMovement : MonoBehaviour
 
             if (!furn) return;
 
-            furn.SetDestroyed();
+            if (collision.gameObject == gameGrid.selectedObject.GetObject())
+            {
+                Mover.GetObject().StopMovingObject();
+            }
 
-            Destroy(furn);
+            furn.SetDestroyed();
 
             CurrentDestroyedObjects--;
 
             cameraAnimator.GetObject().Play("CameraShake");
 
-            if (collision.gameObject == gameGrid.selectedObject.GetObject())
-            {
-                Mover.GetObject().StopMovingObject();
-            }
             
         }
     }

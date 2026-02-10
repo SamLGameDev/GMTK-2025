@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1519714283387465544}
   - component: {fileID: 5595856163444613052}
   - component: {fileID: 8759939497483202842}
+  - component: {fileID: 4207245089299994718}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -140,7 +141,10 @@ MonoBehaviour:
   GameGrid: {fileID: 11400000, guid: fceb7801cd553b048a6f8d03ddc70db5, type: 2}
   cameraAnimator: {fileID: 11400000, guid: 54159ad77c1dddf458a4075ca6f72fda, type: 2}
   animationSpeed: 5
+  SqueakyInfo: {fileID: 11400000, guid: 59641a4f87f4b03479023b35af8d1e6c, type: 2}
   Mover: {fileID: 11400000, guid: f0c09009bdfaaaf4ab9f847fed1888b0, type: 2}
+  CanUseAbilities: {fileID: 11400000, guid: 60755bde97a510c4694d794c6ac43c59, type: 2}
+  OnSqeakyToyOver: {fileID: 11400000, guid: 28eb23deafe07464d9303528eaf8b4c2, type: 2}
 --- !u!61 &5595856163444613052
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -284,3 +288,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4207245089299994718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688821777123652120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e3b720fabc3a7499450b332422d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 827ca84cbc7c3f746925b3aa980819b4, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1519714283387465544}
+        m_TargetAssemblyTypeName: DogMovement, Assembly-CSharp
+        m_MethodName: SetTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

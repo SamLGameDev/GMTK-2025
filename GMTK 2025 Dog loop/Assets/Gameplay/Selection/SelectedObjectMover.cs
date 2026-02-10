@@ -16,9 +16,6 @@ public class SelectedObjectMover : MonoBehaviour
     [SerializeField] private SelectedObjectMoverStore selfRef;
 
     [SerializeField]
-    AudioSource gridSnapSFX;
-
-    [SerializeField]
     InputController IC;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,7 +34,6 @@ public class SelectedObjectMover : MonoBehaviour
     {
         movingObjectCTS.Cancel();
         store.GetObject().layer = 0;
-        gridSnapSFX.Play();
     }
 
     private async UniTaskVoid UpdateSelectedObject(CancellationToken Token)
@@ -46,16 +42,28 @@ public class SelectedObjectMover : MonoBehaviour
         {
             return;
         }
-
         Vector3 LastValidPos = store.GetObject().transform.position;
         Vector3 Offset = IC.TouchWorldPos - store.GetObject().transform.position;
+        bool bWasInvalidPos = false;
+        ISelectable selectable = store.GetObject().GetComponent<ISelectable>();
+        BoxCollider2D boxCollider = store.GetObject().GetComponent<BoxCollider2D>();
         while (true)
         {
             if (Token.IsCancellationRequested || !store.GetObject())
             {
                 movingObjectCTS = new CancellationTokenSource();
                 store.GetObject().transform.position = LastValidPos;
-                store.GetObject().GetComponent<SpriteRenderer>().color = Color.white;
+
+
+                if (bWasInvalidPos)
+                {
+                    selectable.OnInvalidLastPos();
+                }
+                else
+                {
+                    selectable.OnDrop();
+                }
+
                 store.SetObjects(null);
                 
                 break;
@@ -66,14 +74,7 @@ public class SelectedObjectMover : MonoBehaviour
 
             RaycastHit2D[] hits;
 
-            BoxCollider2D boxCollider = store.GetObject().GetComponent<BoxCollider2D>();
-
-
-            Vector2 DrawPos = IC.TouchWorldPos - Offset;
-            DrawPos.y += boxCollider.size.y / 2;
-            DrawPos.x += 0.5f * (boxCollider.size.x - 1);
-
-            hits = Physics2D.BoxCastAll(DrawPos, boxCollider.size, 0, Vector2.zero, 0, 7);
+            hits = Physics2D.BoxCastAll(store.GetObject().gameObject.transform.position, boxCollider.size, 0, Vector2.zero, 0, 7);
 
             Color color = Color.white;
             bool bBlocked = false;
@@ -98,22 +99,30 @@ public class SelectedObjectMover : MonoBehaviour
                 }
 
                 bBlocked = true;
-                color = Color.red;
+                color = selectable.GetInvalidColor();
 
             }
 
-            if (!bHasHitWall)
+
+            if (!bHasHitWall || selectable.CanMoveInsideWalls())
             {
-
-
                 if (!bBlocked)
                 {
                     LastValidPos = IC.TouchWorldPos - Offset;
+                    bWasInvalidPos = false;
+                }
+                else
+                {
+                    bWasInvalidPos = true;
                 }
 
                 store.GetObject().transform.position = IC.TouchWorldPos - Offset;
                 store.GetObject().GetComponent<SpriteRenderer>().color = color;
                 store.Blocked = bBlocked;
+            }
+            if (bHasHitWall)
+            {
+                bWasInvalidPos = true;
             }
         }
     }

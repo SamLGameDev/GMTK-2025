@@ -30,14 +30,13 @@ public class InputController : MonoBehaviour
 
     private void OnDragStart()
     { 
-        print(TouchWorldPos);
         RaycastHit2D[] hits = Physics2D.CircleCastAll(TouchWorldPos, 0.2f, Vector2.zero, 0, 7);
         foreach (RaycastHit2D hit in hits)
         {
             if (hit)
             {
-
-                if (!hit.rigidbody || !hit.rigidbody.GetComponent<RegisterFurniture>())
+                ISelectable selectable;
+                if (!hit.rigidbody || !hit.rigidbody.TryGetComponent<ISelectable>(out selectable))
                 {
                     return;
                 }

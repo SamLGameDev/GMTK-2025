@@ -1,4 +1,5 @@
 using System;
+using Gameplay.Furniture;
 using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
 using UnityEngine;
