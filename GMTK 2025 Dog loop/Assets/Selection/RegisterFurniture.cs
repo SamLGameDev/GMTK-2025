@@ -36,6 +36,8 @@ public class RegisterFurniture : MonoBehaviour
     private float scoreCountDown;
     private bool triggerDisplay = false;
 
+    private ScoreManager scoreManager;
+
     private void Awake()
     {
         furniture.furniture = gameObject;
@@ -75,7 +77,7 @@ public class RegisterFurniture : MonoBehaviour
         currentFurniture.Remove(this);
     }
 
-    public async UniTask TriggerScoreDisplay()
+    public async UniTask TriggerScoreDisplay(ScoreManager scoreManager)
     {
         while (true)
         {
@@ -88,6 +90,7 @@ public class RegisterFurniture : MonoBehaviour
 
             scoreCountDown -= 1;
             scoreDisplay.text = scoreCountDown.ToString();
+            scoreManager.IncreaseTotalScore(1);
 
             if (scoreCountDown == 0)
             {

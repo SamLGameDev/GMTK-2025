@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,11 +27,15 @@ public class EnergyManager : MonoBehaviour
 
     private bool callScoreDisplay = false;
 
+    private TextMeshProUGUI totalScoreDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         callScoreDisplay = false ;
+        totalScoreDisplay = GameObject.FindGameObjectWithTag("TotalScore").GetComponent<TextMeshProUGUI>();
+        totalScoreDisplay.transform.parent.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,9 +57,13 @@ public class EnergyManager : MonoBehaviour
             {
                 callScoreDisplay = true;
 
+                GameObject.FindGameObjectWithTag("Dog").GetComponent<DogMovement>().StopDog();
+
+                totalScoreDisplay.transform.parent.parent.gameObject.SetActive(true);
+
                 foreach (RegisterFurniture furn in RemainingFurniture.GetItems())
                 {
-                    furn.TriggerScoreDisplay();
+                    furn.TriggerScoreDisplay(scoreManager);
                 }
             }
 
