@@ -12,6 +12,8 @@ TagManager:
   - PawPrint
   - VFXCollider
   - DestroySFX
+  - Dog
+  - TotalScore
   layers:
   - Default
   - TransparentFX
