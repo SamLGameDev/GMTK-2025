@@ -19,7 +19,7 @@ public class EnergyManager : MonoBehaviour
     [SerializeField]
     GameObjectStore DogStore;
 
-    [SerializeField] private ScoreManager scoreManager;
+    private ScoreManager scoreManager;
 
     [SerializeField] private float winScreenDelay;
 
@@ -36,6 +36,7 @@ public class EnergyManager : MonoBehaviour
         callScoreDisplay = false ;
         totalScoreDisplay = GameObject.FindGameObjectWithTag("TotalScore").GetComponent<TextMeshProUGUI>();
         totalScoreDisplay.transform.parent.parent.gameObject.SetActive(false);
+        scoreManager = GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
