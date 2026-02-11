@@ -204,6 +204,11 @@ public class DogMovement : MonoBehaviour
     {
         while (true)
         {
+            if (stopDog)
+            {
+                continue;
+            }
+
             if (target != null)
             {
                 transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);

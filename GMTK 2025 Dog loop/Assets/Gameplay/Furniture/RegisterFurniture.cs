@@ -1,6 +1,6 @@
-using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Gameplay.Furniture
 {
@@ -38,7 +38,6 @@ namespace Gameplay.Furniture
         [SerializeField] private TextMeshProUGUI scoreDisplay;
 
         private float scoreCountDown;
-        private bool triggerDisplay = false;
 
         private void Awake()
         {
@@ -92,6 +91,7 @@ namespace Gameplay.Furniture
                 }
             }
         }
+
         public void OnInvalidLastPos()
         {
             OnDrop();
@@ -107,31 +107,22 @@ namespace Gameplay.Furniture
             return Color.red;
         }
 
-        public async UniTask TriggerScoreDisplay(ScoreManager scoreManager)
+        public void SetCountDown()
         {
-            while (true)
-            {
-                if (!triggerDisplay)
-                {
-                    triggerDisplay = true;
-                    scoreCountDown = furniture.GetScore();
-                    scoreDisplay.gameObject.SetActive(true);
-                    pointsIncreaseSFX.Play();
-                }
+            scoreCountDown = furniture.GetScore();
+            scoreDisplay.gameObject.SetActive(true);
+            pointsIncreaseSFX.Play();
+        }
 
-                scoreCountDown -= 1;
-                scoreDisplay.text = scoreCountDown.ToString();
-                scoreManager.IncreaseTotalScore(1);
+        public bool GiveScoreToLeader()
+        {
+            scoreCountDown -= 1;
+            scoreDisplay.text = scoreCountDown.ToString();
 
-                if (scoreCountDown == 0)
-                {
-                    triggerDisplay = false;
-                    CancelInvoke();
-                    break;
-                }
-                await UniTask.WaitForSeconds(0.075f);
-            }
-
+            if (scoreCountDown <=0)
+                return false;
+            else
+                return true;
         }
 
     }

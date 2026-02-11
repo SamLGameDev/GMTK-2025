@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Gameplay.Furniture;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,14 +64,49 @@ public class EnergyManager : MonoBehaviour
 
                 totalScoreDisplay.transform.parent.parent.gameObject.SetActive(true);
 
-                foreach (RegisterFurniture furn in RemainingFurniture.GetItems())
+                foreach (RegisterFurniture fur in RemainingFurniture.GetItems())
                 {
-                    furn.TriggerScoreDisplay(scoreManager);
+                    fur.SetCountDown();
                 }
+
+                TriggerScoreDisplay();
             }
 
             if (winScreenDelay <= 0)
                 SceneManager.LoadScene("WinScene");
         }
     }
+
+    private async UniTask TriggerScoreDisplay()
+    {
+        int i = 0;
+        RegisterFurniture currentFur = RemainingFurniture.GetItemAtIndex(i);
+
+        while (true)
+        {
+            if (!currentFur.GiveScoreToLeader())
+            {
+                i++;
+            }
+
+            scoreManager.IncreaseTotalScore(1);
+
+            if (i >= RemainingFurniture.GetListSize())
+            {
+                CancelInvoke();
+                break;
+            }
+
+            if (winScreenDelay <= 0)
+            {
+                SceneManager.LoadScene("WinScene");
+                CancelInvoke();
+                break;
+            }
+
+            await UniTask.WaitForSeconds(0.075f);
+        }
+
+    }
 }
+
