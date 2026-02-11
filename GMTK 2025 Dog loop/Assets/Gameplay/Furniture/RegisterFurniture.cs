@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 namespace Gameplay.Furniture
@@ -26,12 +28,23 @@ namespace Gameplay.Furniture
         [SerializeField]
         AudioSource gridSnapSFX;
 
+        [SerializeField]
+        AudioSource pointsIncreaseSFX;
+
         public bool bShouldDestroy = false;
+
+        private BoxCollider2D collider;
+
+        [SerializeField] private TextMeshProUGUI scoreDisplay;
+
+        private float scoreCountDown;
+        private bool triggerDisplay = false;
 
         private void Awake()
         {
             furniture.furniture = gameObject;
-            GetComponent<BoxCollider2D>().enabled = false;
+            collider = GetComponent<BoxCollider2D>();
+            collider.enabled = false;
             currentFurniture.Add(this);
 
         }
@@ -48,7 +61,13 @@ namespace Gameplay.Furniture
 
         private void Start()
         {
-            GetComponent<BoxCollider2D>().enabled = true;
+            collider.enabled = true;
+
+            Vector3 scorePos = scoreDisplay.transform.parent.position;
+            scorePos.x += this.collider.size.x / 2;
+            scorePos.x -= scoreDisplay.transform.localScale.x / 2;
+            scorePos.y += this.collider.size.y + 0.5f;
+            scoreDisplay.transform.parent.position = scorePos;
         }
 
         private void OnDestroy()
@@ -86,6 +105,33 @@ namespace Gameplay.Furniture
         public Color GetInvalidColor()
         {
             return Color.red;
+        }
+
+        public async UniTask TriggerScoreDisplay(ScoreManager scoreManager)
+        {
+            while (true)
+            {
+                if (!triggerDisplay)
+                {
+                    triggerDisplay = true;
+                    scoreCountDown = furniture.GetScore();
+                    scoreDisplay.gameObject.SetActive(true);
+                    pointsIncreaseSFX.Play();
+                }
+
+                scoreCountDown -= 1;
+                scoreDisplay.text = scoreCountDown.ToString();
+                scoreManager.IncreaseTotalScore(1);
+
+                if (scoreCountDown == 0)
+                {
+                    triggerDisplay = false;
+                    CancelInvoke();
+                    break;
+                }
+                await UniTask.WaitForSeconds(0.075f);
+            }
+
         }
 
     }

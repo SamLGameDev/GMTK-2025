@@ -1764,7 +1764,7 @@ PrefabInstance:
     - target: {fileID: 19461831661588725, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: furnitureDestroyedSFX
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1916537287}
     - target: {fileID: 4664711720703123417, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Name
       value: Sofa
@@ -5193,6 +5193,10 @@ PrefabInstance:
     - target: {fileID: 7209413691106299527, guid: acb958471e658e3498dcea6480169cf4, type: 3}
       propertyPath: m_Name
       value: EnergyBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578049051269963245, guid: acb958471e658e3498dcea6480169cf4, type: 3}
+      propertyPath: winScreenDelay
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17061,6 +17065,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1380280036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1916537287 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3934890110094007605, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+  m_PrefabInstance: {fileID: 158759468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1942399864
 GameObject:
   m_ObjectHideFlags: 0

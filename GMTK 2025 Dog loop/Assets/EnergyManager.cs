@@ -65,7 +65,7 @@ public class EnergyManager : MonoBehaviour
 
                 foreach (RegisterFurniture furn in RemainingFurniture.GetItems())
                 {
-                    //furn.TriggerScoreDisplay(scoreManager);
+                    furn.TriggerScoreDisplay(scoreManager);
                 }
             }
 
