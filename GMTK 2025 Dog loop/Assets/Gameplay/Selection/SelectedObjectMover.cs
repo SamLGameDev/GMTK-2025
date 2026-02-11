@@ -74,6 +74,7 @@ public class SelectedObjectMover : MonoBehaviour
 
             RaycastHit2D[] hits;
 
+            Debug.Log(store.GetObject());
             hits = Physics2D.BoxCastAll(store.GetObject().gameObject.transform.position, boxCollider.size, 0, Vector2.zero, 0, 7);
 
             Color color = Color.white;

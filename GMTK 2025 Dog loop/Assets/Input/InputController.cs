@@ -24,7 +24,7 @@ public class InputController : MonoBehaviour
 
     public void UpdateTouchPosition(InputAction.CallbackContext context)
     {
-        TouchWorldPos = Cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
+        TouchWorldPos = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
         TouchWorldPos.z = 1;
     }
 
@@ -48,6 +48,8 @@ public class InputController : MonoBehaviour
                 furn.layer = 2;
 
                 Mover.StartMovingObject();
+
+                //furn.GetComponent<SpriteRenderer>().color = Color.yellow;
             }
         }
     }

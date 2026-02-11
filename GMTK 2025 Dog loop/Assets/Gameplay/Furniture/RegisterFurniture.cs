@@ -26,7 +26,7 @@ namespace Gameplay.Furniture
         [SerializeField]
         AudioSource gridSnapSFX;
 
-        private bool bShouldDestroy = false;
+        public bool bShouldDestroy = false;
 
         private void Awake()
         {
@@ -39,10 +39,11 @@ namespace Gameplay.Furniture
         public void SetDestroyed() 
         {
             GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
-            GetComponent<SpriteRenderer>().color = Color.grey;
+            //GetComponent<SpriteRenderer>().color = Color.grey;
             furnitureDestroyedSFX.Play();
             Instantiate(rubbleVFX, this.transform.position, Quaternion.identity);
             bShouldDestroy = true;
+            Destroy(this);
         }
 
         private void Start()
@@ -58,15 +59,18 @@ namespace Gameplay.Furniture
         public void OnDrop()
         {
             gridSnapSFX.Play();
+
+            //if (this == null) return;
+
             print("why");
-            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-            if (sprite.color == Color.red)
+
+            if (!bShouldDestroy)
             {
-                sprite.color = Color.white;
-            }
-            if (bShouldDestroy)
-            {
-                Destroy(this);
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                if (sprite.color == Color.red)
+                {
+                    sprite.color = Color.white;
+                }
             }
         }
         public void OnInvalidLastPos()

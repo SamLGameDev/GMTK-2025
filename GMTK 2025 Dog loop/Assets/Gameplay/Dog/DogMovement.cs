@@ -200,10 +200,13 @@ public class DogMovement : MonoBehaviour
     {
         while (true)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);
-            if (transform.position.Equals(target))
+            if (target != null)
             {
-                OnReachedObject.Invoke();
+                transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);
+                if (transform.position.Equals(target))
+                {
+                    OnReachedObject.Invoke();
+                }
             }
 
             if (Token.IsCancellationRequested)
@@ -224,6 +227,8 @@ public class DogMovement : MonoBehaviour
 
             if (!furn) return;
 
+            furn.bShouldDestroy = true;
+
             if (collision.gameObject == gameGrid.selectedObject.GetObject())
             {
                 Mover.GetObject().StopMovingObject();
@@ -234,8 +239,6 @@ public class DogMovement : MonoBehaviour
             CurrentDestroyedObjects--;
 
             cameraAnimator.GetObject().Play("CameraShake");
-
-            
         }
     }
 
