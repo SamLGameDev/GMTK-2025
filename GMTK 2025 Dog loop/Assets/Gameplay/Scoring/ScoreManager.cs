@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using Gameplay.Furniture;
 using Unity.Services.Authentication;
@@ -5,6 +6,7 @@ using Unity.Services.Leaderboards;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -16,19 +18,38 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private string LeaderBoardID;
 
+    private TextMeshProUGUI totalScoreDisplay;
+
+    private void Awake()
+    {
+        totalScoreDisplay = GameObject.FindGameObjectWithTag("TotalScore").GetComponent<TextMeshProUGUI>();
+    }
+
     private void Start()
     {
         TotalScore.SetValue(0f);
+        totalScoreDisplay = GameObject.FindGameObjectWithTag("TotalScore").GetComponent<TextMeshProUGUI>();
     }
 
-    private async void OnDestroy()
+    private void FindTotalScore()
     {
         foreach (RegisterFurniture furn in RemainingFurniture.GetItems())
         {
             TotalScore.SetValue(furn.furniture.GetScore() + TotalScore.GetValue());
         }
+    }
 
-        if (!AuthenticationService.Instance.IsSignedIn) 
+    public void IncreaseTotalScore(float increaseBy)
+    {
+        TotalScore.SetValue(increaseBy + TotalScore.GetValue());
+        totalScoreDisplay.text = TotalScore.GetValue().ToString();
+    }
+
+    private async void OnDestroy()
+    {
+        FindTotalScore();
+
+        if (!AuthenticationService.Instance.IsSignedIn)
         {
             return;
         }

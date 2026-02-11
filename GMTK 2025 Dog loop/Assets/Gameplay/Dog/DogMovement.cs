@@ -64,6 +64,8 @@ public class DogMovement : MonoBehaviour
     [SerializeField]
     int animationSpeed = 5;
 
+    private bool stopDog = false;
+
     [SerializeField] private SquekyToyInfo SqueakyInfo;
 
     [SerializeField] private SelectedObjectMoverStore Mover;
@@ -98,6 +100,8 @@ public class DogMovement : MonoBehaviour
         OnReachedObject += GetRandomTarget;
         MoveTowardsObject(movingToObjectCTS.Token);
 
+        Debug.Log("Dog start called");
+        stopDog = false;
     }
 
     private void CountdownOver()
@@ -221,6 +225,9 @@ public class DogMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (stopDog)
+            return;
+
         if (collision.CompareTag("Untagged")) 
         {
             RegisterFurniture furn = collision.GetComponent<RegisterFurniture>();
@@ -264,5 +271,10 @@ public class DogMovement : MonoBehaviour
     {
         animationSpeed--;
         dogAnimator.speed = animationSpeed;
+    }
+
+    public void StopDog()
+    {
+        stopDog = true;
     }
 }
