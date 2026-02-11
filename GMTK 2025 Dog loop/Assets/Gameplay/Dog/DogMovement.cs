@@ -168,6 +168,7 @@ public class DogMovement : MonoBehaviour
     public void StartSqueakyToyWait()
     {
         dogPlayingWithToy.Play();
+        dogAnimator.SetBool("isChewingToy", true);
         movingToObjectCTS.Cancel();
         SqueakToyWait();
 
@@ -189,6 +190,8 @@ public class DogMovement : MonoBehaviour
         MoveTowardsObject(movingToObjectCTS.Token);
 
         CanUseAbilities.SetValue(true);
+
+        dogAnimator.SetBool("isChewingToy", false);
 
     }
 
