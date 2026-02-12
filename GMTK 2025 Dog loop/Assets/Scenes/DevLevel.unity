@@ -5195,6 +5195,10 @@ PrefabInstance:
       value: EnergyBar
       objectReference: {fileID: 0}
     - target: {fileID: 7578049051269963245, guid: acb958471e658e3498dcea6480169cf4, type: 3}
+      propertyPath: MaxEnergy
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578049051269963245, guid: acb958471e658e3498dcea6480169cf4, type: 3}
       propertyPath: winScreenDelay
       value: 2.5
       objectReference: {fileID: 0}
@@ -7719,7 +7723,7 @@ MonoBehaviour:
   SelectedObject: {fileID: 11400000, guid: dbffdb44bc0d3874c923327a6c8442df, type: 2}
   Mover: {fileID: 1089143680}
   PowerupPool: {fileID: 11400000, guid: dc17b29104b1eef4fa6038f61913786f, type: 2}
-  NumPowerUps: 3
+  NumPowerUps: 2
   IC: {fileID: 1089143682}
   CanUseAbilities: {fileID: 11400000, guid: 60755bde97a510c4694d794c6ac43c59, type: 2}
   squeakySelection: {fileID: 838630466}

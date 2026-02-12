@@ -37,7 +37,7 @@ namespace Gameplay.Furniture
 
         [SerializeField] private TextMeshProUGUI scoreDisplay;
 
-        private float scoreCountDown;
+        public float scoreCountDown;
 
         private void Awake()
         {
@@ -107,11 +107,12 @@ namespace Gameplay.Furniture
             return Color.red;
         }
 
-        public void SetCountDown()
+        public float SetCountDown()
         {
             scoreCountDown = furniture.GetScore();
             scoreDisplay.gameObject.SetActive(true);
             pointsIncreaseSFX.Play();
+            return scoreCountDown;
         }
 
         public bool GiveScoreToLeader()

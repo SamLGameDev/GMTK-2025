@@ -30,6 +30,7 @@ public class EnergyManager : MonoBehaviour
     private bool callScoreDisplay = false;
 
     private TextMeshProUGUI totalScoreDisplay;
+    private float totalScore = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -60,13 +61,13 @@ public class EnergyManager : MonoBehaviour
             {
                 callScoreDisplay = true;
 
-                GameObject.FindGameObjectWithTag("Dog").GetComponent<DogMovement>().StopDog();
+               // GameObject.FindGameObjectWithTag("Dog").GetComponent<DogMovement>().StopDog();
 
                 totalScoreDisplay.transform.parent.parent.gameObject.SetActive(true);
 
                 foreach (RegisterFurniture fur in RemainingFurniture.GetItems())
                 {
-                    fur.SetCountDown();
+                    totalScore += fur.SetCountDown();
                 }
 
                 TriggerScoreDisplay();
@@ -84,14 +85,17 @@ public class EnergyManager : MonoBehaviour
 
         while (true)
         {
-            if (!currentFur.GiveScoreToLeader())
+            foreach (RegisterFurniture fur in RemainingFurniture.GetItems())
             {
-                i++;
+                if (fur.scoreCountDown > 0)
+                {
+                    fur.GiveScoreToLeader();
+                    scoreManager.IncreaseTotalScore(1);
+                    totalScore -= 1;
+                }
             }
 
-            scoreManager.IncreaseTotalScore(1);
-
-            if (i >= RemainingFurniture.GetListSize())
+            if (totalScore <= 0)
             {
                 CancelInvoke();
                 break;
@@ -104,7 +108,7 @@ public class EnergyManager : MonoBehaviour
                 break;
             }
 
-            await UniTask.WaitForSeconds(0.075f);
+            await UniTask.WaitForSeconds(0.1f);
         }
 
     }
