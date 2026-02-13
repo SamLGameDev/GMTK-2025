@@ -47,13 +47,15 @@ public class SelectedObjectMover : MonoBehaviour
         bool bWasInvalidPos = false;
         ISelectable selectable = store.GetObject().GetComponent<ISelectable>();
         BoxCollider2D boxCollider = store.GetObject().GetComponent<BoxCollider2D>();
+
+        Rigidbody2D rb = store.GetObject().GetComponent<Rigidbody2D>();
         while (true)
         {
             if (Token.IsCancellationRequested || !store.GetObject())
             {
                 movingObjectCTS = new CancellationTokenSource();
                 store.GetObject().transform.position = LastValidPos;
-
+                rb.linearVelocity = Vector2.zero;
 
                 if (bWasInvalidPos)
                 {
@@ -69,12 +71,10 @@ public class SelectedObjectMover : MonoBehaviour
                 break;
             }
 
-            await UniTask.Yield();
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
 
 
             RaycastHit2D[] hits;
-
-            Debug.Log(store.GetObject());
             hits = Physics2D.BoxCastAll(store.GetObject().gameObject.transform.position, boxCollider.size, 0, Vector2.zero, 0, 7);
 
             Color color = Color.white;
@@ -117,7 +117,9 @@ public class SelectedObjectMover : MonoBehaviour
                     bWasInvalidPos = true;
                 }
 
-                store.GetObject().transform.position = IC.TouchWorldPos - Offset;
+                Vector2 velocity = ((IC.TouchWorldPos - Offset) - store.GetObject().transform.position) * (200 * Time.fixedDeltaTime);
+                print(velocity);
+                rb.linearVelocity = velocity;
                 store.GetObject().GetComponent<SpriteRenderer>().color = color;
                 store.Blocked = bBlocked;
             }

@@ -2516,6 +2516,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -12146,6 +12154,10 @@ PrefabInstance:
     - target: {fileID: 4664711720703123417, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
