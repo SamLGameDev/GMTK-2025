@@ -6,7 +6,6 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.Leaderboards;
 using Unity.Services.Leaderboards.Models;
-using UnityEditor.Rendering.Universal;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;

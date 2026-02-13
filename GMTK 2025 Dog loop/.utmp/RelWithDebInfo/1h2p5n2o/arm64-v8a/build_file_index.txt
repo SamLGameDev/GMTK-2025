@@ -1,3 +1,0 @@
-D:\Projects\Personal\GMTK-2025\GMTK 2025 Dog loop\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
-D:\Projects\Personal\GMTK-2025\GMTK 2025 Dog loop\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
-D:\Projects\Personal\GMTK-2025\GMTK 2025 Dog loop\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

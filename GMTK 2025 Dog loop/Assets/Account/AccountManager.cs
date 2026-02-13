@@ -1,9 +1,7 @@
 using Unity.Services.Authentication.PlayerAccounts;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 

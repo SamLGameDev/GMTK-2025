@@ -103,6 +103,9 @@ public class SelectedObjectMover : MonoBehaviour
                 if (!hit.rigidbody)
                 {
 
+                    if (selectable.CanMoveInsideWalls()) continue;
+
+
                     if (hit.collider.gameObject.tag == "DownWall")
                     {
                         bHasHitWall = true;
@@ -153,6 +156,8 @@ public class SelectedObjectMover : MonoBehaviour
                 {
                     bWasInvalidPos = true;
                 }
+
+              //  print("TryingToMove" + IC.TouchWorldPos - Offset);
 
                 store.GetObject().transform.position = IC.TouchWorldPos - Offset;
                 store.GetObject().GetComponent<SpriteRenderer>().color = color;
