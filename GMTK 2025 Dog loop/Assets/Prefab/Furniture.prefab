@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 30841268248331375}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 3471570963282462122}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -374,6 +374,7 @@ MonoBehaviour:
   pointsIncreaseSFX: {fileID: 8577003032530266858}
   bShouldDestroy: 0
   scoreDisplay: {fileID: 2158166783821194897}
+  scoreCountDown: 0
 --- !u!61 &8924022013713621379
 BoxCollider2D:
   m_ObjectHideFlags: 0

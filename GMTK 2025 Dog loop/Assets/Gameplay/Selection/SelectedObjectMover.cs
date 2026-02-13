@@ -47,6 +47,11 @@ public class SelectedObjectMover : MonoBehaviour
         bool bWasInvalidPos = false;
         ISelectable selectable = store.GetObject().GetComponent<ISelectable>();
         BoxCollider2D boxCollider = store.GetObject().GetComponent<BoxCollider2D>();
+        bool bHasHitWall = false;
+        bool down = false;
+        bool up = false;
+        bool right = false;
+        bool left = false;
         while (true)
         {
             if (Token.IsCancellationRequested || !store.GetObject())
@@ -57,6 +62,20 @@ public class SelectedObjectMover : MonoBehaviour
 
                 if (bWasInvalidPos)
                 {
+                    selectable.OnInvalidLastPos();
+                }
+                else if (bHasHitWall)
+                {
+                    if (down)
+                        LastValidPos.y += 0.5f;
+                    else if (up)
+                        LastValidPos.y -= 0.5f;
+                    else if (left)
+                        LastValidPos.x += 0.5f;
+                    else if (right)
+                        LastValidPos.x -= 0.5f;
+
+                    store.GetObject().transform.position = LastValidPos;
                     selectable.OnInvalidLastPos();
                 }
                 else
@@ -79,15 +98,33 @@ public class SelectedObjectMover : MonoBehaviour
 
             Color color = Color.white;
             bool bBlocked = false;
-            bool bHasHitWall = false;
             foreach (RaycastHit2D hit in hits)
             {
                 if (!hit.rigidbody)
                 {
 
-                    if (hit.collider.gameObject.CompareTag("Wall"))
+                    if (hit.collider.gameObject.tag == "DownWall")
                     {
                         bHasHitWall = true;
+                        down = true;
+                        break;
+                    }
+                    if (hit.collider.gameObject.tag == "UpWall")
+                    {
+                        bHasHitWall = true;
+                        up = true;
+                        break;
+                    }
+                    if (hit.collider.gameObject.tag == "LeftWall")
+                    {
+                        bHasHitWall = true;
+                        left = true;
+                        break;
+                    }
+                    if (hit.collider.gameObject.tag == "RightWall")
+                    {
+                        bHasHitWall = true;
+                        right = true;
                         break;
                     }
 
@@ -123,7 +160,20 @@ public class SelectedObjectMover : MonoBehaviour
             }
             if (bHasHitWall)
             {
-                bWasInvalidPos = true;
+                Vector3 newPos = LastValidPos;
+
+                if (down)
+                    newPos.y = LastValidPos.y + 0.5f;
+                else if (up)
+                    newPos.y = LastValidPos.y - 0.5f;
+                else if (left)
+                    newPos.x = LastValidPos.x + 0.5f;
+                else if (right)
+                    newPos.x = LastValidPos.x - 0.5f;
+
+
+                store.GetObject().transform.position = newPos;
+                //bWasInvalidPos = true;
             }
         }
     }
