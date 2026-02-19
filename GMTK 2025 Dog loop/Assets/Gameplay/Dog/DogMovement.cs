@@ -85,6 +85,8 @@ public class DogMovement : MonoBehaviour
 
     [SerializeField] private AudioSource dogPlayingWithToy;
 
+    [SerializeField] private GameEvent dogReachedTugRope;
+
     private void Awake()
     {
         dogAnimator = GetComponent<Animator>();
@@ -169,12 +171,51 @@ public class DogMovement : MonoBehaviour
         CanUseAbilities.SetValue(false);
     }
 
+
+    public void SetTargetRope(Vector3 Target)
+    {
+
+        OnReachedObject -= GetRandomTarget;
+        PickTargetCTS.Cancel();
+        target = Target;
+        OnReachedObject += StartTugRopeWait;
+        CanUseAbilities.SetValue(false);
+    }
+
+
     public void StartSqueakyToyWait()
     {
         dogPlayingWithToy.Play();
         dogAnimator.SetBool("isChewingToy", true);
         movingToObjectCTS.Cancel();
         SqueakToyWait();
+
+    }
+
+    public void StartTugRopeWait()
+    {
+        dogPlayingWithToy.Play();
+        dogAnimator.SetBool("isChewingToy", true);
+        movingToObjectCTS.Cancel();
+        dogReachedTugRope.Raise();
+
+    }
+
+    public void EndTugRope()
+    {
+        OnReachedObject -= StartTugRopeWait;
+        OnReachedObject += GetRandomTarget;
+
+        PickTargetCTS = new CancellationTokenSource();
+
+        PickTarget(PickTargetCTS.Token);
+
+        movingToObjectCTS = new CancellationTokenSource();
+        MoveTowardsObject(movingToObjectCTS.Token);
+
+        CanUseAbilities.SetValue(true);
+
+        dogAnimator.SetBool("isChewingToy", false);
 
     }
 

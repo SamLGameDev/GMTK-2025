@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 8759939497483202842}
   - component: {fileID: 4207245089299994718}
   - component: {fileID: 8744060647411914966}
+  - component: {fileID: 2203175476190915150}
+  - component: {fileID: -4717577510971620818}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Dog
@@ -147,6 +149,7 @@ MonoBehaviour:
   CanUseAbilities: {fileID: 11400000, guid: 60755bde97a510c4694d794c6ac43c59, type: 2}
   OnSqeakyToyOver: {fileID: 11400000, guid: 28eb23deafe07464d9303528eaf8b4c2, type: 2}
   dogPlayingWithToy: {fileID: 8744060647411914966}
+  dogReachedTugRope: {fileID: 11400000, guid: d4c51d4c7c658094d9fa34570256ad25, type: 2}
 --- !u!61 &5595856163444613052
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -415,3 +418,59 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2203175476190915150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688821777123652120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3e3b720fabc3a7499450b332422d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 629dbfd24b4721d4eb2e99c23afb2ed9, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1519714283387465544}
+        m_TargetAssemblyTypeName: DogMovement, Assembly-CSharp
+        m_MethodName: SetTargetRope
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-4717577510971620818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688821777123652120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ada47f84af8e894d8ca337bd3c749e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0c558d9590c082d4f82514b66982fee6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1519714283387465544}
+        m_TargetAssemblyTypeName: DogMovement, Assembly-CSharp
+        m_MethodName: EndTugRope
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
