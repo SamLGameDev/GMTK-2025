@@ -7,7 +7,7 @@ public class DogSpawner : MonoBehaviour
     public int CountdownTime;
 
     [SerializeField]
-    private GameObject Dog;
+    private GameObjectStore Dog;
 
     [SerializeField]
     private BoolStore CanUseAbilities;
@@ -23,7 +23,7 @@ public class DogSpawner : MonoBehaviour
 
     private void SpawnDog()
     {
-        Instantiate(Dog, transform.position, Quaternion.identity);
+        Instantiate(Dog.GetObject(), transform.position, Quaternion.identity);
         CanUseAbilities.SetValue(true);
         GetComponent<Animator>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = emptyBed;

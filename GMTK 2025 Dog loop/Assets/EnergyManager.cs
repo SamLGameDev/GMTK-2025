@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class EnergyManager : MonoBehaviour
 {
-    [SerializeField]
-    float MaxEnergy;
 
     [SerializeField]
     Image EnergyMeter;
@@ -32,6 +30,8 @@ public class EnergyManager : MonoBehaviour
     private TextMeshProUGUI totalScoreDisplay;
     private float totalScore = 0;
 
+    private DogMovement dogMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,18 +40,26 @@ public class EnergyManager : MonoBehaviour
         totalScoreDisplay = GameObject.FindGameObjectWithTag("TotalScore").GetComponent<TextMeshProUGUI>();
         totalScoreDisplay.transform.parent.parent.gameObject.SetActive(false);
         scoreManager = GetComponent<ScoreManager>();
+
     }
 
     // Update is called once per frame
     async void Update()
     {
+        if (!DogStore.GetObject()) return;
 
-        if (DogStore.GetObject() != null && DogStore.GetObject().GetComponent<DogMovement>().countDown) 
+        if (!dogMovement)
+        {
+            dogMovement = DogStore.GetObject().GetComponent<DogMovement>();
+        }
+
+
+        if (dogMovement.countDown) 
         {
             return;
         }
 
-        EnergyMeter.fillAmount = EnergyMeter.fillAmount - Speed * Time.deltaTime / MaxEnergy;
+        EnergyMeter.fillAmount = EnergyMeter.fillAmount - Speed * Time.deltaTime / dogMovement.Stats.EnergyLevel;
 
         if (EnergyMeter.fillAmount <= 0)
         {

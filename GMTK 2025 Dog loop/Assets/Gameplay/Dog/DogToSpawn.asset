@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38691faf3c726e04e9673c520b403246, type: 3}
+  m_Name: DogToSpawn
+  m_EditorClassIdentifier: 
+  Item: {fileID: 1688821777123652120, guid: c3dfed03e358d1a488d968b38124d517, type: 3}
+  Blocked: 0

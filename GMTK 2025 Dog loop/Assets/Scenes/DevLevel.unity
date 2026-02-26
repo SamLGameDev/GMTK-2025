@@ -21807,7 +21807,7 @@ PrefabInstance:
     - target: {fileID: 5354468529312496170, guid: 465c37b29336ed24e8bf4e74f58fc39c, type: 3}
       propertyPath: Dog
       value: 
-      objectReference: {fileID: 1688821777123652120, guid: c3dfed03e358d1a488d968b38124d517, type: 3}
+      objectReference: {fileID: 11400000, guid: 0d9004ea4d09a4542ad854ba3b4822a7, type: 2}
     - target: {fileID: 5354468529312496170, guid: 465c37b29336ed24e8bf4e74f58fc39c, type: 3}
       propertyPath: emptyBed
       value: 

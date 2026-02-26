@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class RunTimeList<T> : ScriptableObject
 {
 
-    protected readonly List<T> RegisteredObjects = new List<T>();
+    public List<T> RegisteredObjects = new List<T>();
 
     public virtual void Add(T t)
     {

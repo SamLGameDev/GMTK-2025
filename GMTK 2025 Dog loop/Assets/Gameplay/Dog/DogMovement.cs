@@ -11,22 +11,15 @@ public class DogMovement : MonoBehaviour
 {
     Vector2 target;
 
-    [SerializeField]
-    float Speed;
 
-    [SerializeField]
-    float NewTargetTime;
+    public DogStats Stats;
 
     [SerializeField]
     Sprite Destroyedsprite;
 
     GameGrid gameGrid;
 
-    [SerializeField]
-    Image DestructionBar;
-
-    [SerializeField]
-    int NumObjectsToLose;
+    [SerializeField] private FurnitureSet CurrentFurns;
 
     int CurrentDestroyedObjects;
 
@@ -51,8 +44,6 @@ public class DogMovement : MonoBehaviour
 
     public bool countDown = true;
 
-    public int CountdownTime;
-
     Animator dogAnimator;
 
     [SerializeField]
@@ -60,9 +51,6 @@ public class DogMovement : MonoBehaviour
 
     [SerializeField]
     AnimatorStore cameraAnimator;
-
-    [SerializeField]
-    int animationSpeed = 5;
 
     private bool stopDog = false;
 
@@ -87,9 +75,12 @@ public class DogMovement : MonoBehaviour
 
     [SerializeField] private GameEvent dogReachedTugRope;
 
+    private float CurrentAnimationSpeed;
+
     private void Awake()
     {
         dogAnimator = GetComponent<Animator>();
+        DogRegister.SetObjects(gameObject);
     }
 
     // Start is called before the first frame update
@@ -97,10 +88,10 @@ public class DogMovement : MonoBehaviour
     {
 
         gameGrid = GameGrid.GetObject().GetComponent<GameGrid>();
-        DogRegister.SetObjects(gameObject);
         CountdownOver();
         OnReachedObject += GetRandomTarget;
         MoveTowardsObject(movingToObjectCTS.Token);
+        CurrentAnimationSpeed = Stats.AnimationSpeed;
 
         Debug.Log("Dog start called");
         stopDog = false;
@@ -110,7 +101,7 @@ public class DogMovement : MonoBehaviour
     {
         CreatePawPrints();
         PickTarget(PickTargetCTS.Token);
-        CurrentDestroyedObjects = NumObjectsToLose;
+        CurrentDestroyedObjects = CurrentFurns.GetListSize();
         countDown = false;
         GetComponent<SpriteRenderer>().enabled = true;
     }
@@ -125,7 +116,7 @@ public class DogMovement : MonoBehaviour
             }
 
             GetRandomTarget();
-            await UniTask.WaitForSeconds(NewTargetTime);
+            await UniTask.WaitForSeconds(Stats.NewTargetTime);
         }
     }
 
@@ -252,7 +243,7 @@ public class DogMovement : MonoBehaviour
 
             if (target != null)
             {
-                transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target, Stats.Speed * Time.fixedDeltaTime);
                 if (transform.position.Equals(target))
                 {
                     OnReachedObject.Invoke();
@@ -314,9 +305,9 @@ public class DogMovement : MonoBehaviour
     }
 
     private void SlowAnimation()
-    {
-        animationSpeed--;
-        dogAnimator.speed = animationSpeed;
+    { 
+        CurrentAnimationSpeed--;
+        dogAnimator.speed = CurrentAnimationSpeed;
     }
 
     public void StopDog()
