@@ -3,6 +3,7 @@ using Gameplay.Furniture;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -69,6 +70,9 @@ public class DogMovement : MonoBehaviour
 
     CancellationTokenSource PickTargetCTS = new CancellationTokenSource();
 
+
+    CancellationTokenSource ChaseSelectedCTS = new CancellationTokenSource();
+
     [SerializeField] private GameEvent OnSqeakyToyOver;
 
     [SerializeField] private AudioSource dogPlayingWithToy;
@@ -76,6 +80,9 @@ public class DogMovement : MonoBehaviour
     [SerializeField] private GameEvent dogReachedTugRope;
 
     private float CurrentAnimationSpeed;
+
+    private float GradualSpeed = 0;
+
 
     private void Awake()
     {
@@ -122,8 +129,8 @@ public class DogMovement : MonoBehaviour
 
     private void GetRandomTarget()
     {
-        int random = Random.Range(0, 3);
-        if (random == 0)
+        float random = Random.Range(0f, 1f);
+        if (random <= Stats.DogTargetCorrectness)
         {
             SetTarget();
         }
@@ -243,7 +250,7 @@ public class DogMovement : MonoBehaviour
 
             if (target != null)
             {
-                transform.position = Vector2.MoveTowards(transform.position, target, Stats.Speed * Time.fixedDeltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target, (Stats.Speed  + GradualSpeed)* Time.fixedDeltaTime);
                 if (transform.position.Equals(target))
                 {
                     OnReachedObject.Invoke();
@@ -314,4 +321,43 @@ public class DogMovement : MonoBehaviour
     {
         stopDog = true;
     }
+
+    private async UniTask ChaseSelectedObject(CancellationToken Token)
+    {
+        while (true)
+        {
+            if (Token.IsCancellationRequested) return;
+
+
+            target = selectedObject.GetObject().transform.position;
+
+            GradualSpeed += Stats.DogEnrageSpeeedGradualIncrease * Time.fixedDeltaTime;
+
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+
+        }
+
+    }
+
+    public void Enrage()
+    {
+        PickTargetCTS.Cancel();
+
+        ChaseSelectedObject(ChaseSelectedCTS.Token);
+    }
+
+    public void StopEnrage()
+    {
+        ChaseSelectedCTS.Cancel();
+
+        ChaseSelectedCTS = new CancellationTokenSource();
+
+        PickTargetCTS = new CancellationTokenSource();
+
+        PickTarget(PickTargetCTS.Token);
+
+        GradualSpeed = 0;
+    }
+
+
 }

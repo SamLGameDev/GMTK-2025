@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 8744060647411914966}
   - component: {fileID: 2203175476190915150}
   - component: {fileID: -4717577510971620818}
+  - component: {fileID: 7884407549398231536}
+  - component: {fileID: 2000219449210881642}
   m_Layer: 0
   m_Name: Dog Breed2
   m_TagString: Dog
@@ -461,6 +463,62 @@ MonoBehaviour:
       - m_Target: {fileID: 1519714283387465544}
         m_TargetAssemblyTypeName: DogMovement, Assembly-CSharp
         m_MethodName: EndTugRope
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7884407549398231536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688821777123652120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ada47f84af8e894d8ca337bd3c749e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e4a563f91501bd84b8fc8b30f642958e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1519714283387465544}
+        m_TargetAssemblyTypeName: DogMovement, Assembly-CSharp
+        m_MethodName: Enrage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2000219449210881642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688821777123652120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ada47f84af8e894d8ca337bd3c749e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b8798ad10f6988d4eb2cd6b3936f77cb, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1519714283387465544}
+        m_TargetAssemblyTypeName: DogMovement, Assembly-CSharp
+        m_MethodName: StopEnrage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

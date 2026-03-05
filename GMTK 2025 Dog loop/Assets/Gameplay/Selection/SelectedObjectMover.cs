@@ -18,6 +18,13 @@ public class SelectedObjectMover : MonoBehaviour
     [SerializeField]
     InputController IC;
 
+    private DogMovement dog;
+    [SerializeField] private GameObjectStore dogStore;
+
+    [SerializeField] private GameEvent DogEnraged;
+
+    [SerializeField] private GameEvent DogStoppedEnrage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,8 +59,28 @@ public class SelectedObjectMover : MonoBehaviour
         bool up = false;
         bool right = false;
         bool left = false;
+
+        float TimeHeld = 0;
+        bool bHasDogEnraged = false;
+
         while (true)
         {
+
+
+            if (!dog && dogStore.GetObject())
+            {
+                dogStore.GetObject().TryGetComponent<DogMovement>(out dog);
+                TimeHeld = 0;
+            }
+            else if (dogStore.GetObject())
+            {
+                if (TimeHeld > dog.Stats.DogEnrageTime && !bHasDogEnraged)
+                {
+                    DogEnraged.Raise();
+                    bHasDogEnraged = true;
+                }
+            }
+
             if (Token.IsCancellationRequested || !store.GetObject())
             {
                 movingObjectCTS = new CancellationTokenSource();
@@ -83,13 +110,18 @@ public class SelectedObjectMover : MonoBehaviour
                     selectable.OnDrop();
                 }
 
+                if (bHasDogEnraged)
+                {
+                    DogStoppedEnrage.Raise();
+                }
+
                 store.SetObjects(null);
-                
+
                 break;
             }
 
-            await UniTask.Yield();
-
+            await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            TimeHeld += Time.fixedDeltaTime;
 
             RaycastHit2D[] hits;
 

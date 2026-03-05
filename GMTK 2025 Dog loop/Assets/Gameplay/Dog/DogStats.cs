@@ -8,6 +8,13 @@ public class DogStats : ScriptableObject
     public float NewTargetTime;
     public float CountDownTime;
     public float AnimationSpeed;
+    [Range(0, 1)]
+    public float DogTargetCorrectness;
+
+    public float DogEnrageTime;
+
+
+    public float DogEnrageSpeeedGradualIncrease;
 
     public Sprite MenuSprite;
 

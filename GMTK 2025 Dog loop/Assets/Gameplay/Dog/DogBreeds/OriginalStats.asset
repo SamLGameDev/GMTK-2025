@@ -17,4 +17,7 @@ MonoBehaviour:
   NewTargetTime: 5
   CountDownTime: 5
   AnimationSpeed: 5
+  DogTargetCorrectness: 0
+  DogEnrageTime: 5
+  DogEnrageSpeeedGradualIncrease: 0.1
   MenuSprite: {fileID: -688888554365461350, guid: 05b75d75a54651e4f92c8f74438b231b, type: 3}
