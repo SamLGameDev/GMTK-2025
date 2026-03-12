@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 72974914}
   - component: {fileID: 72974916}
   - component: {fileID: 72974915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TopWall
   m_TagString: UpWall
   m_Icon: {fileID: 0}
@@ -1905,6 +1905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa
       objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8500004
@@ -1944,6 +1948,30 @@ PrefabInstance:
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_CallbackLayers.m_Bits
+      value: 439
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 502
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2670,6 +2698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -2725,6 +2757,22 @@ PrefabInstance:
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Offset.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 438
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -3690,6 +3738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant
       objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8
@@ -3745,6 +3797,22 @@ PrefabInstance:
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Offset.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 438
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -4237,7 +4305,7 @@ GameObject:
   - component: {fileID: 399786679}
   - component: {fileID: 399786678}
   - component: {fileID: 399786680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BottomWall
   m_TagString: DownWall
   m_Icon: {fileID: 0}
@@ -4348,7 +4416,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -24.6}
+  m_Offset: {x: 0, y: -23.015184}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4358,7 +4426,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 43.923153}
+  m_Size: {x: 4, y: 47.092785}
   m_EdgeRadius: 0
 --- !u!1 &400413964
 GameObject:
@@ -4371,7 +4439,7 @@ GameObject:
   - component: {fileID: 400413966}
   - component: {fileID: 400413965}
   - component: {fileID: 400413967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftWall
   m_TagString: LeftWall
   m_Icon: {fileID: 0}
@@ -4461,7 +4529,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4482,7 +4550,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -24.4, y: 0}
+  m_Offset: {x: -23.754156, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4492,7 +4560,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 47.050552, y: 2}
+  m_Size: {x: 48.342243, y: 2}
   m_EdgeRadius: 0
 --- !u!1 &408523811
 GameObject:
@@ -9618,7 +9686,7 @@ GameObject:
   - component: {fileID: 966119246}
   - component: {fileID: 966119245}
   - component: {fileID: 966119247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightWall
   m_TagString: RightWall
   m_Icon: {fileID: 0}
@@ -9725,7 +9793,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -11837,10 +11905,10 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 502
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 502
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -12846,6 +12914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.04
@@ -12903,6 +12975,22 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -12958,7 +13046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.070007324, y: -0.08996582}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363081523
@@ -15549,13 +15637,33 @@ PrefabInstance:
       propertyPath: DestroyedSprite
       value: 
       objectReference: {fileID: -4631891158273679393, guid: 55ceb76edec18914186e5acd5d72f328, type: 3}
+    - target: {fileID: 30841268248331375, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394596310308447449, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2302984635892743907, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 3607313394652048805, guid: 55ceb76edec18914186e5acd5d72f328, type: 3}
+    - target: {fileID: 3471570963282462122, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4664711720703123417, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Name
       value: CoffeeTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664711720703123417, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15597,6 +15705,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5947671663027583977, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325819319380536669, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Size.x
       value: 1.8
@@ -15614,8 +15730,20 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 438
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -19278,6 +19406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TvSet
       objectReference: {fileID: 0}
+    - target: {fileID: 5072634675357710301, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5308069315289732598, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -19333,6 +19465,26 @@ PrefabInstance:
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_Offset.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceSendLayers.m_Bits
+      value: 438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
+      propertyPath: m_ForceReceiveLayers.m_Bits
+      value: 438
       objectReference: {fileID: 0}
     - target: {fileID: 8924022013713621379, guid: a5da2c266423fb74fa9c4fa96d9ef066, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x

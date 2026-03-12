@@ -1,5 +1,7 @@
+using System;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameGrid;
@@ -49,17 +51,13 @@ public class SelectedObjectMover : MonoBehaviour
         {
             return;
         }
+
         Vector3 LastValidPos = store.GetObject().transform.position;
         Vector3 Offset = IC.TouchWorldPos - store.GetObject().transform.position;
         bool bWasInvalidPos = false;
         ISelectable selectable = store.GetObject().GetComponent<ISelectable>();
         BoxCollider2D boxCollider = store.GetObject().GetComponent<BoxCollider2D>();
-        bool bHasHitWall = false;
-        bool down = false;
-        bool up = false;
-        bool right = false;
-        bool left = false;
-
+        Rigidbody2D rb = store.GetObject().GetComponent<Rigidbody2D>();
         float TimeHeld = 0;
         bool bHasDogEnraged = false;
 
@@ -86,23 +84,9 @@ public class SelectedObjectMover : MonoBehaviour
                 movingObjectCTS = new CancellationTokenSource();
                 store.GetObject().transform.position = LastValidPos;
 
-
+                rb.linearVelocity = Vector2.zero;
                 if (bWasInvalidPos)
                 {
-                    selectable.OnInvalidLastPos();
-                }
-                else if (bHasHitWall)
-                {
-                    if (down)
-                        LastValidPos.y += 0.5f;
-                    else if (up)
-                        LastValidPos.y -= 0.5f;
-                    else if (left)
-                        LastValidPos.x += 0.5f;
-                    else if (right)
-                        LastValidPos.x -= 0.5f;
-
-                    store.GetObject().transform.position = LastValidPos;
                     selectable.OnInvalidLastPos();
                 }
                 else
@@ -125,8 +109,8 @@ public class SelectedObjectMover : MonoBehaviour
 
             RaycastHit2D[] hits;
 
-            Debug.Log(store.GetObject());
-            hits = Physics2D.BoxCastAll(store.GetObject().gameObject.transform.position, boxCollider.size, 0, Vector2.zero, 0, 7);
+            hits = Physics2D.BoxCastAll(boxCollider.bounds.center, boxCollider.size, 0,
+                Vector2.zero, 0, 7);
 
             Color color = Color.white;
             bool bBlocked = false;
@@ -134,35 +118,11 @@ public class SelectedObjectMover : MonoBehaviour
             {
                 if (!hit.rigidbody)
                 {
-
-                    if (selectable.CanMoveInsideWalls()) continue;
-
-
-                    if (hit.collider.gameObject.tag == "DownWall")
+                    if (hit.transform.gameObject.layer == 8)
                     {
-                        bHasHitWall = true;
-                        down = true;
-                        break;
+                        bBlocked = true;
+                        color = selectable.GetInvalidColor();
                     }
-                    if (hit.collider.gameObject.tag == "UpWall")
-                    {
-                        bHasHitWall = true;
-                        up = true;
-                        break;
-                    }
-                    if (hit.collider.gameObject.tag == "LeftWall")
-                    {
-                        bHasHitWall = true;
-                        left = true;
-                        break;
-                    }
-                    if (hit.collider.gameObject.tag == "RightWall")
-                    {
-                        bHasHitWall = true;
-                        right = true;
-                        break;
-                    }
-
                     continue;
                 }
 
@@ -177,44 +137,28 @@ public class SelectedObjectMover : MonoBehaviour
             }
 
 
-            if (!bHasHitWall || selectable.CanMoveInsideWalls())
+            if (!bBlocked)
             {
-                if (!bBlocked)
-                {
-                    LastValidPos = IC.TouchWorldPos - Offset;
-                    bWasInvalidPos = false;
-                }
-                else
-                {
-                    bWasInvalidPos = true;
-                }
-
-              //  print("TryingToMove" + IC.TouchWorldPos - Offset);
-
-                store.GetObject().transform.position = IC.TouchWorldPos - Offset;
-                store.GetObject().GetComponent<SpriteRenderer>().color = color;
-                store.Blocked = bBlocked;
+                LastValidPos = store.GetObject().transform.position;
+                bWasInvalidPos = false;
             }
-            if (bHasHitWall)
+            else
             {
-                Vector3 newPos = LastValidPos;
-
-                if (down)
-                    newPos.y = LastValidPos.y + 0.5f;
-                else if (up)
-                    newPos.y = LastValidPos.y - 0.5f;
-                else if (left)
-                    newPos.x = LastValidPos.x + 0.5f;
-                else if (right)
-                    newPos.x = LastValidPos.x - 0.5f;
-
-
-                store.GetObject().transform.position = newPos;
-                //bWasInvalidPos = true;
+                bWasInvalidPos = true;
             }
+
+            Vector2 velocity = ((IC.TouchWorldPos - Offset) - store.GetObject().transform.position) *
+                               (200 * Time.fixedDeltaTime);
+            rb.linearVelocity = velocity;
+            //  print("TryingToMove" + IC.TouchWorldPos - Offset);
+
+            //store.GetObject().transform.position = IC.TouchWorldPos - Offset;
+            store.GetObject().GetComponent<SpriteRenderer>().color = color;
+            store.Blocked = bBlocked;
+
+
         }
     }
-
 
     // Update is called once per frame
     void Update()

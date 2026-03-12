@@ -80,8 +80,6 @@ namespace Gameplay.Furniture
 
             //if (this == null) return;
 
-            print("why");
-
             if (!bShouldDestroy)
             {
                 SpriteRenderer sprite = GetComponent<SpriteRenderer>();

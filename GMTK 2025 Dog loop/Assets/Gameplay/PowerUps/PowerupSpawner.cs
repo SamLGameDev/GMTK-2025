@@ -28,6 +28,7 @@ public class PowerupSpawner : MonoBehaviour
 
     private void Start()
     {
+        PowerupPool.RegisteredObjects.Clear();
         for (UInt16 i = 0 ; i < NumPowerUps; i++)
         {
             GameObject powerup = Instantiate(PowerupPrefab);

@@ -9,4 +9,6 @@ public interface ISelectable
     public bool CanMoveInsideWalls();
 
     public Color GetInvalidColor();
+
+    public bool CanTriggerEnrage();
 }

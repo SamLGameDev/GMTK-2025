@@ -40,4 +40,6 @@ public class SqueakToyPowerup : MonoBehaviour, ISelectable
         }
     }
 
+    public bool 
+
 }
