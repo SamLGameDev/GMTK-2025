@@ -38,4 +38,10 @@ public class TugRope : MonoBehaviour, ISelectable
             Destroy(gameObject);
         }
     }
+
+    public bool CanTriggerEnrage() 
+    {
+        return false;
+    }
+
 }

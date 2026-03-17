@@ -4441,7 +4441,7 @@ GameObject:
   - component: {fileID: 400413967}
   m_Layer: 8
   m_Name: LeftWall
-  m_TagString: LeftWall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4529,7 +4529,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4550,7 +4550,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -23.754156, y: 0}
+  m_Offset: {x: -11.346787, y: -0.018094271}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4560,7 +4560,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 48.342243, y: 2}
+  m_Size: {x: 23.693579, y: 1.1809425}
   m_EdgeRadius: 0
 --- !u!1 &408523811
 GameObject:
@@ -10138,6 +10138,10 @@ MonoBehaviour:
   dogStore: {fileID: 11400000, guid: 3da5f0acc10585f4a9582bcb274c6e49, type: 2}
   DogEnraged: {fileID: 11400000, guid: e4a563f91501bd84b8fc8b30f642958e, type: 2}
   DogStoppedEnrage: {fileID: 11400000, guid: b8798ad10f6988d4eb2cd6b3936f77cb, type: 2}
+  MoveSpeed: 200
+  mask:
+    serializedVersion: 2
+    m_Bits: 321
 --- !u!4 &1089143681
 Transform:
   m_ObjectHideFlags: 0
@@ -13046,7 +13050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.070007324, y: -0.08996582}
+  m_AnchoredPosition: {x: 0.07006836, y: -0.08996582}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363081523

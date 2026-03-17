@@ -27,6 +27,9 @@ public class SelectedObjectMover : MonoBehaviour
 
     [SerializeField] private GameEvent DogStoppedEnrage;
 
+    [SerializeField] private float MoveSpeed = 200;
+    [SerializeField] private LayerMask mask;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -70,7 +73,7 @@ public class SelectedObjectMover : MonoBehaviour
                 dogStore.GetObject().TryGetComponent<DogMovement>(out dog);
                 TimeHeld = 0;
             }
-            else if (dogStore.GetObject())
+            else if (dogStore.GetObject() && selectable.CanTriggerEnrage())
             {
                 if (TimeHeld > dog.Stats.DogEnrageTime && !bHasDogEnraged)
                 {
@@ -107,26 +110,28 @@ public class SelectedObjectMover : MonoBehaviour
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
             TimeHeld += Time.fixedDeltaTime;
 
-            RaycastHit2D[] hits;
+            Collider2D[] hits;
+            hits = Physics2D.OverlapBoxAll(boxCollider.bounds.center, boxCollider.size, 0, mask);
 
-            hits = Physics2D.BoxCastAll(boxCollider.bounds.center, boxCollider.size, 0,
-                Vector2.zero, 0, 7);
+         
 
             Color color = Color.white;
             bool bBlocked = false;
-            foreach (RaycastHit2D hit in hits)
+            foreach (Collider2D hit in hits)
             {
-                if (!hit.rigidbody)
+                print(hit.transform.name);
+                if (!hit.attachedRigidbody)
                 {
                     if (hit.transform.gameObject.layer == 8)
                     {
+                        print("inWal");
                         bBlocked = true;
                         color = selectable.GetInvalidColor();
                     }
                     continue;
                 }
 
-                if (hit.rigidbody.gameObject == store.GetObject())
+                if (hit.gameObject == store.GetObject())
                 {
                     continue;
                 }
@@ -148,7 +153,7 @@ public class SelectedObjectMover : MonoBehaviour
             }
 
             Vector2 velocity = ((IC.TouchWorldPos - Offset) - store.GetObject().transform.position) *
-                               (200 * Time.fixedDeltaTime);
+                               (MoveSpeed * Time.fixedDeltaTime);
             rb.linearVelocity = velocity;
             //  print("TryingToMove" + IC.TouchWorldPos - Offset);
 

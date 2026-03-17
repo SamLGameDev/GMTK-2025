@@ -40,6 +40,9 @@ public class SqueakToyPowerup : MonoBehaviour, ISelectable
         }
     }
 
-    public bool 
+    public bool CanTriggerEnrage() 
+    {
+        return false;
+    }
 
 }

@@ -124,5 +124,10 @@ namespace Gameplay.Furniture
                 return true;
         }
 
+        public bool CanTriggerEnrage()
+        {
+            return true;
+        }
+
     }
 }
