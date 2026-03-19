@@ -9,6 +9,8 @@ public class SqueakToyPowerup : MonoBehaviour, ISelectable
     [SerializeField] private Color InvalidColor;
 
     [SerializeField] private AudioSource squeakerDropped;
+
+    [SerializeField] private GameEvent OnSqueakyToyInvalidDrop;
         
     public void OnDrop()
     {
@@ -20,6 +22,8 @@ public class SqueakToyPowerup : MonoBehaviour, ISelectable
     {
        PowerupPool.Add(gameObject);
        gameObject.SetActive(false);
+       OnSqueakyToyInvalidDrop.Raise();
+
     }
 
     public bool CanMoveInsideWalls()

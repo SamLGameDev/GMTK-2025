@@ -181,6 +181,7 @@ MonoBehaviour:
   PowerupPool: {fileID: 11400000, guid: dc17b29104b1eef4fa6038f61913786f, type: 2}
   InvalidColor: {r: 0.90943396, g: 0.11496616, b: 0.11496616, a: 1}
   squeakerDropped: {fileID: 5605648953646582004}
+  OnSqueakyToyInvalidDrop: {fileID: 11400000, guid: 154639786f2089e49966af6af6fdef25, type: 2}
 --- !u!114 &-3190815625103540623
 MonoBehaviour:
   m_ObjectHideFlags: 0

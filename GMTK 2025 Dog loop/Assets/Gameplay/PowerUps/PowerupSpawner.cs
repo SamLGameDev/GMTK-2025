@@ -56,4 +56,9 @@ public class PowerupSpawner : MonoBehaviour
         squeakySelection.Play();
         remainingToysDisplay.text = PowerupPool.GetListSize().ToString();
     }
+
+    public void RefreshRemainingSqueakyToys()
+    {
+        remainingToysDisplay.text = PowerupPool.GetListSize().ToString();
+    }
 }
