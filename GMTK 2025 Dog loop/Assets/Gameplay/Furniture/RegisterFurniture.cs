@@ -51,7 +51,7 @@ namespace Gameplay.Furniture
         public void SetDestroyed() 
         {
             GetComponent<SpriteRenderer>().sprite = DestroyedSprite;
-            //GetComponent<SpriteRenderer>().color = Color.grey;
+            GetComponent<SpriteRenderer>().color = Color.grey;
             furnitureDestroyedSFX.Play();
             Instantiate(rubbleVFX, this.transform.position, Quaternion.identity);
             bShouldDestroy = true;

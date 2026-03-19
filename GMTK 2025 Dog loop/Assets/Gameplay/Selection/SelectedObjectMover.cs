@@ -2,6 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using Cysharp.Threading.Tasks.Triggers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameGrid;
@@ -29,6 +30,8 @@ public class SelectedObjectMover : MonoBehaviour
 
     [SerializeField] private float MoveSpeed = 200;
     [SerializeField] private LayerMask mask;
+
+    [SerializeField] private Material Outline;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -63,10 +66,42 @@ public class SelectedObjectMover : MonoBehaviour
         Rigidbody2D rb = store.GetObject().GetComponent<Rigidbody2D>();
         float TimeHeld = 0;
         bool bHasDogEnraged = false;
+        SpriteRenderer sr = store.GetObject().GetComponent<SpriteRenderer>();
+        Material prePickup = sr.material;
+
+        sr.material = Outline;
 
         while (true)
         {
 
+            if (Token.IsCancellationRequested)
+            {
+                movingObjectCTS = new CancellationTokenSource();
+                store.GetObject().transform.position = LastValidPos;
+                sr.material = prePickup;
+                rb.linearVelocity = Vector2.zero;
+
+                if (store.GetObject().TryGetComponent<ISelectable>(out selectable))
+                {
+                    if (bWasInvalidPos)
+                    {
+                        selectable.OnInvalidLastPos();
+                    }
+                    else
+                    {
+                        selectable.OnDrop();
+                    }
+                }
+
+                if (bHasDogEnraged)
+                {
+                    DogStoppedEnrage.Raise();
+                }
+
+                store.SetObjects(null);
+
+                break;
+            }
 
             if (!dog && dogStore.GetObject())
             {
@@ -82,30 +117,7 @@ public class SelectedObjectMover : MonoBehaviour
                 }
             }
 
-            if (Token.IsCancellationRequested || !store.GetObject())
-            {
-                movingObjectCTS = new CancellationTokenSource();
-                store.GetObject().transform.position = LastValidPos;
-
-                rb.linearVelocity = Vector2.zero;
-                if (bWasInvalidPos)
-                {
-                    selectable.OnInvalidLastPos();
-                }
-                else
-                {
-                    selectable.OnDrop();
-                }
-
-                if (bHasDogEnraged)
-                {
-                    DogStoppedEnrage.Raise();
-                }
-
-                store.SetObjects(null);
-
-                break;
-            }
+          
 
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
             TimeHeld += Time.fixedDeltaTime;
@@ -119,12 +131,10 @@ public class SelectedObjectMover : MonoBehaviour
             bool bBlocked = false;
             foreach (Collider2D hit in hits)
             {
-                print(hit.transform.name);
                 if (!hit.attachedRigidbody)
                 {
                     if (hit.transform.gameObject.layer == 8)
                     {
-                        print("inWal");
                         bBlocked = true;
                         color = selectable.GetInvalidColor();
                     }
@@ -158,7 +168,11 @@ public class SelectedObjectMover : MonoBehaviour
             //  print("TryingToMove" + IC.TouchWorldPos - Offset);
 
             //store.GetObject().transform.position = IC.TouchWorldPos - Offset;
-            store.GetObject().GetComponent<SpriteRenderer>().color = color;
+            if (store.GetObject().TryGetComponent<ISelectable>(out selectable))
+            {
+                sr.color = color;
+            }
+
             store.Blocked = bBlocked;
 
 
